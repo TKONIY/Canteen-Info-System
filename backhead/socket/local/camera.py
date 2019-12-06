@@ -1,3 +1,7 @@
+# env: cv2, socket,  python=3.6
+# --encoding:utf-8--
+# author : TKONIY  time: 2019/12/5
+
 import cv2
 import socket
 
