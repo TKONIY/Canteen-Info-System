@@ -50,7 +50,6 @@ def cam2cloud(show=True, sleep=15, host="49.234.121.191", port=9999):
 
         # 发送图片数据
         if request == 'ok':
-            # 发送图片，多送20个空格避免出错
             s.send(string_data)
             print("jpg already sent.")
 
