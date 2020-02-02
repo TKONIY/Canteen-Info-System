@@ -1,6 +1,6 @@
 import cv2
 import socket
-
+import sys
 
 def recvBytes(csocket, length):
     data = bytes()
@@ -9,7 +9,7 @@ def recvBytes(csocket, length):
     return data
 
 
-def cam2cloud(show=True, sleep=15, host="49.234.121.191", port=9999):
+def cam2cloud(show=True, sleep=15, host, port=9999):
     # 本地的sleep=15，是因为opencv的imshow函数至少需要这么多时间
     # 远程的sleep=25，摄像头视频流FPS=30，理论间隔33ms，这里取15+20=35ms纯粹是通过实验得出的结论
     
@@ -53,5 +53,5 @@ def cam2cloud(show=True, sleep=15, host="49.234.121.191", port=9999):
             s.send(string_data)
             print("jpg already sent.")
 
-
-cam2cloud()
+serverip = sys.argv[1]
+cam2cloud(host=serverip)
