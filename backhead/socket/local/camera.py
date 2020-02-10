@@ -9,7 +9,7 @@ def recvBytes(csocket, length):
     return data
 
 
-def cam2cloud(show=True, sleep=15, host, port=9999):
+def cam2cloud(host, show=True, sleep=15, port=9999):
     # 本地的sleep=15，是因为opencv的imshow函数至少需要这么多时间
     # 远程的sleep=25，摄像头视频流FPS=30，理论间隔33ms，这里取15+20=35ms纯粹是通过实验得出的结论
     
