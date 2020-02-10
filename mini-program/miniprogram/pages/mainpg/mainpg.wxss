@@ -1,0 +1,43 @@
+/* miniprogram/pages/mainpg/mainpg.wxss */
+.uploader, .tunnel {
+  height: auto;
+  padding: 0 0 0 40rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.uploader-text, .tunnel-text {
+  width: 100%;
+  line-height: 52px;
+  font-size: 34rpx;
+  color: #ffbb00;
+}
+
+.uploader-text1 {
+  width: 100%;
+  line-height: 52px;
+  font-size: 34rpx;
+  color: #ff0000;
+}
+.uploader-text2 {
+  width: 100%;
+  line-height: 52px;
+  font-size: 34rpx;
+  color: #0e0707;
+}
+.list1 {
+  margin-top: 5rpx;
+  height: auto;
+  width: 100%;
+  background: #fff;
+  padding: 0 40rpx;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  transition: all 300ms ease;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+}
