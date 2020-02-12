@@ -16,7 +16,7 @@ def recvBytes(csocket, length):
 def socket2cloud(host="0.0.0.0", port=9999, listen=1, sleep=25):
     # 新建socket
     s = socket.socket()
-    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # 重置端口
+    # s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # 重置端口
     s.bind((host, port))
     s.listen(listen)
 
