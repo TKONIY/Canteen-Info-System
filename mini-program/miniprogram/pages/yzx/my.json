@@ -1,0 +1,10 @@
+ {
+  "usingComponents": {
+    "van-button": "/dist/button/index",
+    "van-cell": "/dist/cell/index",
+    "van-cell-group": "/dist/cell-group/index"
+  },
+  "navigationBarTitleText": "我的",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}
