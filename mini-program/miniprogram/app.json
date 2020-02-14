@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/mainpg/mainpg",
     "pages/index/index",
     "pages/userConsole/userConsole",
@@ -17,9 +18,8 @@
     "pages/canteen/canteen",
     "pages/dish/dish",
     "pages/my/my",
-    "pages/edit/edit",
-    "pages/mycomment/mycomment"
-
+    "pages/mycomment/mycomment",
+    "pages/edit/edit"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -42,5 +42,6 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
 }
