@@ -1,5 +1,5 @@
 <!--pages/deployFunctions/deployFunctions.wxml-->
-<view class="container">
+<view class="container1">
  
  <!-- 头像和选择头像 -->
   <view class="userinfo" bindtap="doUpload" hover-class="userinfo_hover">
