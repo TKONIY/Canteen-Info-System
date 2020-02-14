@@ -15,7 +15,10 @@
     "pages/im/im",
     "pages/im/room/room",
     "pages/canteen/canteen",
-    "pages/dish/dish"
+    "pages/dish/dish",
+    "pages/my/my",
+    "pages/edit/edit",
+    "pages/mycomment/mycomment"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -32,12 +35,11 @@
         "iconPath": "images/03.jpg"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/my/my",
         "selectedIconPath": "images/02.jpg",
         "iconPath": "images/01.jpg"
       }
     ]
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "sitemapLocation": "sitemap.json"
 }
