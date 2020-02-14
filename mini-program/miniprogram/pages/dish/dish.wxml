@@ -1,0 +1,10 @@
+<!--miniprogram/pages/dish/dish.wxml-->
+<view class='list1'>
+<view class="uploader" wx:for="{{ canteen0dish0}}"  >
+<image class='.image1' src="/images/02.jpg" ></image>
+        <view class="uploader-text1"> <text>{{item.name}}</text></view>
+        <view class="uploader-text2"> <text>{{item.date}}     </text></view>
+        <view class="uploader-text3"> <text>{{item.com}}     </text></view>
+      </view>
+
+</view>
