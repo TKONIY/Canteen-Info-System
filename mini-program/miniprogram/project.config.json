@@ -17,10 +17,8 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.1",
 	"appid": "wxdf94376d7cfb094d",
-	"projectname": "miniprogram",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
+
+		
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
