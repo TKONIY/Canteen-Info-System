@@ -1,5 +1,4 @@
 <!--miniprogram/pages/dish/dish.wxml-->
- <van-rate value="{{value}}" bind:change="onChange"/>
 <scroll-view class="list">
    <!---->
       <view class="CONTAINER" wx:for="{{commentList}}"  >
@@ -17,11 +16,10 @@
         </view>
     
         <view class="commenttext">
-          <text>{{item.text}}
-          {{item.score}}</text>
+          <text>{{item.text}}</text>
         </view>
 
-        <van-rate value="{{item.score}}" bind:change="onchange"/>
+        <van-rate value="{{item.score}}" bind:change="onChange"/>
     
 
       </view>

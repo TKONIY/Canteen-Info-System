@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "van-button": "/dist/rate/index"
+    "van-rate": "/dist/rate/index"
   
   },
   "navigationBarTitleText": "comment",
