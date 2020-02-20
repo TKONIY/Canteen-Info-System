@@ -1,3 +1,9 @@
-{"navigationBarTitleText": "菜品评价",
-  "usingComponents": {}
+{
+  "usingComponents": {
+    "van-button": "/dist/rate/index"
+  
+  },
+  "navigationBarTitleText": "comment",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
 }

@@ -4,29 +4,34 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {canteen0dish0:[
-    {
-      name:"dijiyau",
-      com:"yummy",
-      date:"2020.1.13"
-
-    },
-    {
-      name: "dijiyau",
-      com: "yummy",
-      date: "2020.1.12"
-
-    },
-    {
-      name: "dijiyau",
-      com: "yummy",
-      date: "2020.1.10"
-
-    }
-  ]
+  data: {
+  
+    commentList: [
+      { username:"will",
+       xueyuan:"信通院2018级",
+        time: "刚刚",
+        name: "麻辣烫",
+        window: 2,
+        canteen: "教工餐厅 5楼",
+        text: "超好吃！",
+        score: 5
+      },
+      {
+        username: "will",
+        xueyuan: "信通院2018级",
+        time: "2019.10.30 16:46",
+        name: "牛肉拉面",
+        window: 3,
+        canteen: "学生餐厅 2楼",
+        text: "超级无敌好吃！！！",
+        score: 5
+      }
+    ]
 
   },
-
+ onChange(event){
+   this.setData({value:event.detail});
+ },
   /**
    * 生命周期函数--监听页面加载
    */
