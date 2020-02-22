@@ -1,6 +1,7 @@
 <!--miniprogram/pages/dish/dish.wxml-->
 <scroll-view class="list">
    <!---->
+     <van-cell title="提交菜品评价" border="{{ true }}" is-link clickable="{{true}}" url="/pages/mycomment/mycomment" />
       <view class="CONTAINER" wx:for="{{commentList}}"  >
 
         <view class="container1">

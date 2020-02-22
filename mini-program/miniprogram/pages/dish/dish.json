@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "van-rate": "/dist/rate/index"
+    "van-rate": "/dist/rate/index",
+    "van-cell": "/dist/cell/index"
   
   },
   "navigationBarTitleText": "comment",
