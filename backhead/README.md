@@ -10,7 +10,7 @@
 ## 未完善
 * 响应前端请求
 
-## 运行文件
+## 前端脚本运行方法
 * ./socket/local/local-detector 内是yolov3模型文件，大部分来自https://github.com/ayooshkathuria/pytorch-yolo-v3，我在他的基础上加上了socket。
 * 本地运行摄像头的方法为: 
   * 下载yolov3权重到local-detector文件夹下,链接作者给出了
