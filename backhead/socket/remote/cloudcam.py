@@ -48,4 +48,4 @@ def socket2cloud(host="0.0.0.0", port=9999, listen=1, sleep=25):
         cv2.waitKey(sleep)
 
 
-socket2cloud()
+# socket2cloud()

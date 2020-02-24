@@ -1,3 +1,6 @@
 *.vscode
 *.idea:
-/backhead/node_modules
+*__pycache__*
+*package*
+*node_modules*
+*yolov3.weights*

@@ -2,31 +2,42 @@ const child_process = require("child_process");
 const express = require("express");
 
 const exec = child_process.exec;
-const spawn =child_process.spawn;
+const spawn = child_process.spawn;
 const app = express();
 
 
-cmd = "python socket/remote/cloudcam.py "
 
-// exec(cmd, (error, stdout, stderr)=>{
-//     if(error)console.log(errer)
-//     else if (stderr)console.log(stderr)
-//     else console.log(stdout);
-// })
+function protectCam() {
+    const conda = exec("conda activate", ["opencv"])
+    //以流的方式读取标准输出
+    const cloudcam = spawn("python", ["-u", "socket/remote/cloudcam.py"]);
 
-//以流的方式读取标准输出
-const cloudcam = spawn("python",["-u","socket/remote/cloudcam.py"]);
-// cloudcam.stdout.on("data",(data)=>{
-//     var arr = data.toString().split('\n')
-//     console.log(arr.length);
-// })
+    cloudcam.stdout.on("data", (chunk) => {
+        console.log(chunk.toString() + "*");
+    })
+    cloudcam.stdout.on("close", () => {
+        console.log("closed")
+        protectCam() //如果退出则重启进程，需要加密
+    })
+    cloudcam.stderr.on("data", (chunk) => {
+        console.log(chunk.toString())
+    })
+}
 
-//cloudcam.stdout.pipe(process.stdout);
+function recvPersonNum() {
+    const personCount = spawn("python", ["-u", "socket/remote/recv_result.py"]);
+    personCount.stdout.on("data", (chunk) => {
+        console.log(chunk.toString() + "/");
+    })
+    personCount.stderr.on("data", (chunk) => {
+        console.log(chunk.toString())
+    })
+    personCount.stdout.on("close", () => {
+        console.log("closed")
+        recvPersonNum() //如果退出则重启进程，需要加密防止别人进来
+    })
+}
 
-cloudcam.stdout.on("data",(chunk)=>{
-    console.log(chunk.toString()+"*");
-})
+// protectCam()
+recvPersonNum()
 
-// subprocess.stdout.on("data",(chunk)=>{
-//     console.log(data.toString);
-// })
