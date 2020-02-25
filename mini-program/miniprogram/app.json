@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/mainpg/mainpg",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -12,14 +13,29 @@
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
-    "pages/im/room/room"
+    "pages/im/room/room",
+    "pages/canteen/canteen"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "邮迹云食堂",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/mainpg/mainpg",
+        "selectedIconPath": "images/04.jpg",
+        "iconPath": "images/03.jpg"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "selectedIconPath": "images/02.jpg",
+        "iconPath": "images/01.jpg"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"

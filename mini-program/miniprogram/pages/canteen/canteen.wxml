@@ -1,0 +1,26 @@
+<!--miniprogram/pages/canteen/canteen.wxml-->
+<view class="container">
+<view class="guide">
+   
+    <text class="headline">{{canteenlist[mid-1].name}}</text>
+    <text class="p">当前人流量</text>
+    <text class="q">{{canteenlist[mid-1].people}}</text>
+  
+
+  </view>
+ 
+  <text class="p">菜品一览</text>
+  <text class="m">点击可查看文字评论</text>
+  <view class="list1">
+   
+      <view class="uploader" wx:for="{{ canteendish0}}"  >
+        <view class="uploader-text1"> <text>{{item.name}}</text></view>
+        <view class="uploader-text2"> <text>价格：{{item.price}}    得分：{{item.score}} </text></view>
+      </view>
+ 
+
+
+</view>
+
+
+</view>

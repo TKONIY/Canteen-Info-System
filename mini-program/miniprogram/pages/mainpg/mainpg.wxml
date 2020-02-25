@@ -1,0 +1,11 @@
+<!--miniprogram/pages/mainpg/mainpg.wxml-->
+<view class="list1">
+ <view class="uploader" wx:for="{{canteenlist}}" data-canteen-id="{{item.id}}" bindtap="f0" >
+ <view wx:if="{{item.people > 15 }}" class="uploader-text1"> <text>{{item.name}}</text></view>
+<view wx:elif="{{item.people > 10}}" class="uploader-text"> <text>{{item.name}}</text></view>
+<view wx:else class="uploader-text2"><text>{{item.name}}</text> </view>
+ 
+ 
+
+</view>
+</view>
