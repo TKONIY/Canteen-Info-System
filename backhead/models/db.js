@@ -43,6 +43,16 @@ exports.insertOne = function (dbName, collectionName, json, callback) {
     })
 }
 
+exports.insertOneNotClose = function (dbName, collectionName, json, callback) {
+    connectClient(function (client) {//回调函数接收client对象
+        var db = client.db(dbName);//获取db
+        db.collection(collectionName).insertOne(json, function (err, result) {
+            callback(err, result);//插入一条数据，返回err和result
+            // client.close();//关闭数据库
+        });
+    })
+}
+
 //find一个collection下的分页的docs(filter={})/部分doc
 //cb=>err,docs
 exports.find = function (dbName, collectionName, filter, args, callback) {

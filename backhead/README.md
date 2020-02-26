@@ -17,4 +17,30 @@
   * conda activate 环境名(需要pytorch1.0,python3.6+, opencv3+)
   * python cam_demo.py --host  服务器ip
   * 默认目标端口为9999
-  
+
+## mongodb数据库结构
+* db:           canteen
+* collection:   traffic
+* document:     ↓
+```json
+{
+    time:{
+        date: "2020/2/26"
+        hour: 16
+        minute: 25
+        second: 5
+    }
+    flow: 15
+    location: "学一"
+    cam: 2 //摄像头在该楼层的编号
+}
+```
+> 格式说明:
+> ```js
+> doc.time.date:    (new Date()).toLocaleDateString()) 
+> doc.time.hour:    (new Date()).getHours()
+> doc.time.minute:  (new Date()).getMinutes()
+> doc.time.second:  (new Date()).getSeconds()
+> ```
+> * language: `nodejs`  
+> * 其他语言开发者可在命令行输入`node`启动nodejs环境，并执行以上命令进行测试。
