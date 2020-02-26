@@ -1,69 +1,98 @@
 const child_process = require("child_process");
 const express = require("express");
+const schedule = require("node-schedule");
 
-const router = require("./control/router.js")
-const cfg = require("./control/config.js")
+const router = require("./control/router.js");
+const cfg = require("./control/config.js");
 
 const exec = child_process.exec;
+const execFile = child_process.execFile;
 const spawn = child_process.spawn;
 const app = express();
 
 
 
 function protectCam() {
-    const conda = exec("conda activate", ["opencv"])
-    //以流的方式读取标准输出
+    const conda = exec("conda activate", ["opencv"]);
     const cloudcam = spawn("python", ["-u", "socket/remote/cloudcam.py"]);
 
     cloudcam.stdout.on("data", (chunk) => {
         console.log(chunk.toString() + "*");
-    })
+    });
+
     cloudcam.stdout.on("close", () => {
-        console.log("closed")
-        protectCam() //如果退出则重启进程，需要加密
-    })
+        console.log("closed");
+        protectCam();
+        //如果退出则重启进程，需要增加加密模块
+    });
+
     cloudcam.stderr.on("data", (chunk) => {
-        console.log(chunk.toString())
-    })
+        console.log(chunk.toString());
+    });
 }
 
 function recvPersonNum() {
-    const personCount = spawn("python", ["-u", __dirname + "/socket/remote/recv_result.py"]);
-    personCount.stderr.on("data", (chunk) => {
-        console.log(chunk.toString());
-    });  
+    // "conda", ["activate", "opencv"]
+    // const conda = execFile(__dirname+"/tools/condativ.sh",(err) => {
+    // if (err) { console.log(err); }
+    // else {
 
+        const personCount = spawn("python", ["-u", __dirname + "/socket/remote/recv_result.py"]);
+        personCount.stderr.on("data", (chunk) => {
+            console.log(chunk.toString());
+        });
 
-    personCount.stdout.on("data", (chunk) => {
-        const reg = /^current flow:(\d+)/;
-        const regParse = reg.exec(chunk.toString());
-        //判断输出是否为人数
-        //这里其实可以设置一个计数器，等到一定次数再直接存入数据库，这样就不需要中间文件
-        if (regParse) {
-            console.log(chunk.toString())
-            const json = {
-                time: {
-                    date: (new Date()).toLocaleDateString(),
-                    hour: (new Date()).getHours(),
-                    minute: (new Date()).getMinutes(),
-                    second: (new Date()).getSeconds(),
-                },
-                flow: parseInt(regParse[1]),
-                location: cfg.defCanteen,
-                cam: cfg.defCam,
-            };
-            const file = cfg.bufferFile;
-            router.bufferFlow(json, file);
-        }
-        //save flow
-    })
+        personCount.stdout.on("data", (chunk) => {
+            const reg = /^current flow:(\d+)/;//判断输出是否为人数
+            const regParse = reg.exec(chunk.toString());
 
-    personCount.stdout.on("close", () => {
-        console.log("closed")
-        recvPersonNum() //如果退出则重启进程，需要加密防止别人进来
-    })
+            //这里其实可以设置一个计数器，等到一定次数再直接存入数据库，这样就不需要缓冲文件
+            if (regParse) {
+                console.log(chunk.toString())
+
+                const date = (new Date()).toLocaleDateString();
+                const hour = (new Date()).getHours();
+                const minute = (new Date()).getMinutes();
+                const second = (new Date()).getSeconds();
+                const stamp = date + '-' + hour + ':' + minute + ':' + second;
+                const json = {
+                    stamp: stamp,
+                    time: {
+                        date: date,
+                        hour: hour,
+                        minute: minute,
+                        second: second
+                    },
+                    flow: parseInt(regParse[1]),
+                    location: cfg.defCanteen,
+                    cam: cfg.defCam,
+                };
+                const file = cfg.bufferFile;
+                router.bufferFlow(json, file);//写入buffer
+            }
+        });
+
+        personCount.stdout.on("close", () => {
+            console.log("closed")
+            recvPersonNum() //如果退出则重启进程，需要增加加密模块
+        });
+    
+    
+    // }
+    // });
+
 }
 
-// protectCam()
-recvPersonNum()
+/**定时任务 */
+const updateTraffic = schedule.scheduleJob(
+    "* * * * * *", (fireDate) => {
+        // console.log(fireDate)
+        router.loadBuffer();
+    }
+)
+
+// protectCam() 启动socket接收视频进程
+
+recvPersonNum() //启动socket接收人数进程
+
 
