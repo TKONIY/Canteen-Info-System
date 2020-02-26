@@ -9,6 +9,7 @@
 * 其中接收人数的脚本永远处于运行状态，由pm2守护不断执行,等待local的连接
 ## 未完善
 * 响应前端请求
+* 现在是默认饭堂和默认摄像头,如果集成多个摄像头还需要写很多漂亮的接口(还没想到实现方法,可能要跑多个进程?)
 
 ## 前端脚本运行方法
 * ./socket/local/local-detector 内是yolov3模型文件，大部分来自https://github.com/ayooshkathuria/pytorch-yolo-v3，我在他的基础上加上了socket。
@@ -17,4 +18,35 @@
   * conda activate 环境名(需要pytorch1.0,python3.6+, opencv3+)
   * python cam_demo.py --host  服务器ip
   * 默认目标端口为9999
-  
+
+## mongodb数据库结构
+* db:           canteen
+* collection:   traffic
+* document:     ↓
+```json
+{
+    time:{
+        date: "2020/2/26",
+        hour: 16,
+        minute: 25,
+        second: 5,
+    },
+    flow: 15,
+    location: "学一",
+    cam: 2 //摄像头在该楼层的编号
+}
+```
+> 格式说明:
+> ```js
+> doc.time.date:    (new Date()).toLocaleDateString()) 
+> doc.time.hour:    (new Date()).getHours()
+> doc.time.minute:  (new Date()).getMinutes()
+> doc.time.second:  (new Date()).getSeconds()
+> ```
+> * language: `nodejs`  
+> * 其他语言开发者可在命令行输入`node`启动nodejs环境，并执行以上命令进行测试。
+
+## 其他:
+实时人数的更新暂定使用ws协议实时传送,后端实现有两种方式
+1. 将20fps的输出信息直接转发到ws，可能会有点眼花缭乱。
+2. 每隔一秒从数据库中读出最新人数,
