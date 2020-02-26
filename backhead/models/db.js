@@ -48,7 +48,7 @@ exports.insertOneNotClose = function (dbName, collectionName, json, callback) {
         var db = client.db(dbName);//获取db
         db.collection(collectionName).insertOne(json, function (err, result) {
             callback(err, result);//插入一条数据，返回err和result
-            // client.close();//关闭数据库
+            // client.close();//关闭连接
         });
     })
 }
