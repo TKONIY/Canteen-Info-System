@@ -1,0 +1,48 @@
+.weui-cell {
+  padding: 10px 15px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  border-bottom: 1.5px solid  #1774d1 ;
+  margin:0 25rpx 25rpx 25rpx
+}
+.weui-cell:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1px;
+  left: 15px;
+}
+.weui-cell_input {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.weui-input {
+  height: 2.58823529em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+}
+
+.done{
+  width: 20%;
+  background-color: #1989fa;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 30px;
+  float:right;
+  margin-right: 25rpx
+}
+
+.done_hover{
+  width: 20%;
+  background-color: #1774d1;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 30px;
+}

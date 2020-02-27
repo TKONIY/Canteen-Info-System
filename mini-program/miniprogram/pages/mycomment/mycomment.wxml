@@ -1,5 +1,5 @@
   <van-tabs swipeable active="{{ active }}" bind:change="onChange">
-    <van-tab title="评价">
+    <van-tab title="评价" color='#007aff'>
     <scroll-view class="list">
    <!---->
       <view class="CONTAINER" wx:for="{{commentList}}"  >
@@ -11,15 +11,16 @@
          <view class="container">
             <text class="name">{{name}}</text>         
             <text class="time">{{item.time}}</text>
-
          </view>
          
         </view>
     
         <view class="commenttext">
-          <text>{{item.text}}
-          {{item.score}}</text>
+          <text>{{item.text}}</text>
         </view>
+        
+        <van-rate readonly value="{{item.score}}" size='18px'
+        bind:change="onChange"></van-rate>
 
         <view class="container2">
           <text class="dishname">{{item.name}}</text>
@@ -34,5 +35,4 @@
 
     </van-tab>
 
-    <van-tab title="窗口">内容 2</van-tab>
   </van-tabs>

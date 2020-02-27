@@ -1,0 +1,5 @@
+<view class="weui-cell weui-cell_input">
+    <input class="weui-input" focus bindinput="bindKeyInput" maxlength="10" value='{{username}}' confirm-type='done'/>
+</view>
+<view><button bindtap="f3" class="done" hover-class="done_hover">完成</button></view>
+
