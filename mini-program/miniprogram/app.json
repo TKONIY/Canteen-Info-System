@@ -14,7 +14,17 @@
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
     "pages/im/room/room",
-    "pages/canteen/canteen"
+    "pages/canteen/canteen",
+    "pages/dish/dish",
+    "pages/my/my",
+    "pages/mycomment/mycomment",
+    "pages/input/input",
+    "pages/edit/edit",
+    "pages/djy/djy",
+    "pages/commint com/commint com"
+
+
+
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -31,12 +41,11 @@
         "iconPath": "images/03.jpg"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/my/my",
         "selectedIconPath": "images/02.jpg",
         "iconPath": "images/01.jpg"
       }
     ]
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "sitemapLocation": "sitemap.json"
 }

@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-tab": "/dist/tab/index",
+    "van-tabs": "/dist/tabs/index",
+    "van-skeleton": "/dist/skeleton/index",
+    "van-rate": "/dist/rate/index"
+  },
+  "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}

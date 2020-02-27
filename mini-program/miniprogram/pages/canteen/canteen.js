@@ -71,22 +71,26 @@ Page({
     canteendish0:[
       {name:"西红柿炒鸡蛋",
       price:5,
-      score:4.0
+      score:4.0,
+      id:1
       },
       {
         name: "茄子",
         price: 5,
-        score: 4.0
+        score: 4.0,
+        id:2
       },
       {
         name: "土豆",
         price: 5,
-        score: 4.0
+        score: 4.0,
+        id:3
       },
       {
         name: "胡萝卜",
         price: 5,
-        score: 4.0
+        score: 4.0,
+        id:4
       },
       
     ]
@@ -153,5 +157,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+
+  f1: function (event) {
+    var dishId = event.currentTarget.dataset.dishId
+    console.log(dishId);
+    wx.navigateTo({
+      url: '/pages/dish/dish?id=' + dishId
+    })
   }
 })
