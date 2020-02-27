@@ -1,0 +1,13 @@
+/* miniprogram/pages/commint com/commint com.wxss */
+.input{
+  border:1px solid white;
+  width: 100%;
+  height: 100rpx;
+  padding: 5px;
+  background:white 
+  }
+   .button{
+    background: rgb(106, 186, 218)
+  }
+
+  
