@@ -15,7 +15,7 @@
     </view>
   </view>
   <van-cell-group>
-    <van-cell title="昵称" value="{{name}}" />
+    <van-cell title="昵称" value="{{username}}" />
     <van-cell title="性别" value="{{gender}}" />
     <van-cell title="年级" value="{{grade}}" />
     <view class="air"></view>

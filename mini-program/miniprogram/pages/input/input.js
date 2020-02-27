@@ -5,7 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: './user-unlogin.png',
     userInfo: {},
     logged: false,
     takeSession: false,
@@ -17,48 +16,10 @@ Page({
   },
 
 
-  f0: function (event) {
-    wx.navigateTo({
-      url: '/pages/edit/edit'
-    })
-  },
-
   onLoad: function () {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
-      }
-    })
   },
 
-  onGetUserInfo: function (e) {
-    if (!this.data.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-    }
-  },
-
+  
   /**
  * 生命周期函数--监听页面初次渲染完成
  */
@@ -106,5 +67,26 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  bindKeyInput:function(e) {
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    let prevPage1 = pages[pages.length - 3]
+
+    prevPage.setData({
+      username: e.detail.value
+    })
+    prevPage1.setData({
+      username: e.detail.value
+    })
+    console.log(this.data.username)
+  },
+
+  f3(e) {
+    wx.navigateBack({
+    })
   }
 })
+
+

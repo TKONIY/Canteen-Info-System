@@ -10,7 +10,7 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    name:"will",
+    username:"will",
     gender:"男",
     grade:"2019级"
 
@@ -67,7 +67,8 @@ Page({
   },
 
 
-  onLoad: function () {
+  onLoad: function (options) {
+
   },
 
   
@@ -120,3 +121,4 @@ Page({
 
   }
 })
+

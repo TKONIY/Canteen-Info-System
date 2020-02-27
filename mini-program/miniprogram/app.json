@@ -18,8 +18,10 @@
     "pages/dish/dish",
     "pages/my/my",
     "pages/mycomment/mycomment",
+    "pages/input/input",
     "pages/edit/edit",
     "pages/djy/djy"
+
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

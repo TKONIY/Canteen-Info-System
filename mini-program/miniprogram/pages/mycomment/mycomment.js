@@ -34,6 +34,10 @@ Page({
       title: `切换到标签 ${event.detail.name}`,
       icon: 'none'
     });
+  },
+
+  onChange(event) {
+    this.setData({ value: event.detail });
   }
 
 
