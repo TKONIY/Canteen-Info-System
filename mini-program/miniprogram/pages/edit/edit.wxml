@@ -1,0 +1,19 @@
+<!--pages/deployFunctions/deployFunctions.wxml-->
+<view class="container1">
+ 
+ <!-- 头像和选择头像 -->
+  <view class="userinfo" bindtap="doUpload" hover-class="userinfo_hover">
+    <image src="/images/user-unlogin.png" class="chathead">
+    </image>
+    <view class="userinfo-nickname-wrapper">
+      <view class='arrow'></view>
+    </view>
+  </view>
+  
+  <van-cell-group>
+    <van-cell title="昵称" value="{{username}}" url="/pages/input/input" is-link />
+    <van-cell title="性别" value="{{gender}}" />
+    <van-cell title="年级" value="{{grade}}" />
+  </van-cell-group>
+</view>
+

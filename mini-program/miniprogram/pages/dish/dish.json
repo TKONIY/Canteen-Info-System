@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-rate": "/dist/rate/index",
+    "van-cell": "/dist/cell/index"
+  
+  },
+  "navigationBarTitleText": "comment",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}
