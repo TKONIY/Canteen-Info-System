@@ -1,5 +1,10 @@
 const child_process = require("child_process");
 const express = require("express");
+// const formidableMiddleware = require('express-formidable');
+
+const app = express();
+// app.use(formidableMiddleware());
+
 const schedule = require("node-schedule");
 
 const router = require("./control/router.js");
@@ -8,10 +13,28 @@ const cfg = require("./control/config.js");
 const exec = child_process.exec;
 const execFile = child_process.execFile;
 const spawn = child_process.spawn;
-const app = express();
+
+/**
+ * !api
+ * @get
+ * @post
+ * @websocket
+ */
+
+app.all("/test", (req, res) => {
+    var nothing = "屁都没有";
+    if (JSON.stringify(req.query) != "{}") nothing = req.query;
+    // res.send(req.query);
+    res.send("<h1>FUCK YOU 🐶</h1> 你输入了: " + JSON.stringify(nothing));
+});
+app.listen(3030);
 
 
-
+/**
+ * !funtions
+ * @flow_count
+ * @flow_statistic
+ */
 function protectCam() {
     const conda = exec("conda activate", ["opencv"]);
     const cloudcam = spawn("python", ["-u", "socket/remote/cloudcam.py"]);
@@ -76,8 +99,8 @@ function recvPersonNum() {
             console.log("closed")
             recvPersonNum() //如果退出则重启进程，需要增加加密模块
         });
-    
-    
+
+
     // }
     // });
 
