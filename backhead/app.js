@@ -1,11 +1,10 @@
 const child_process = require("child_process");
 const express = require("express");
 // const formidableMiddleware = require('express-formidable');
+// const schedule = require("node-schedule");
 
 const app = express();
 // app.use(formidableMiddleware());
-
-const schedule = require("node-schedule");
 
 const router = require("./control/router.js");
 const cfg = require("./control/config.js");
@@ -27,6 +26,7 @@ app.all("/test", (req, res) => {
     // res.send(req.query);
     res.send("<h1>FUCK YOU 🐶</h1> 你输入了: " + JSON.stringify(nothing));
 });
+app.all("")
 app.listen(3030);
 
 
