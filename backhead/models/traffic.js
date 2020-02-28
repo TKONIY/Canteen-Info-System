@@ -9,12 +9,12 @@ const trafficSchema = new mongoose.Schema(
             unique: true,
             index: true
         },
-        time: {
-            date: String,
-            hour: Number,
-            minute: Number,
-            second: Number,
-        },
+        
+        date: String,
+        hour: Number,
+        minute: Number,
+        second: Number,
+
         flow: Number,
         location: String,
         cam: Number

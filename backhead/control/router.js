@@ -6,7 +6,7 @@ const Traffic = require("../models/traffic.js");
 exports.bufferFlow = (json, file) => {
     //如果很多摄像头的化就需要修改这个接口
 
-    path = __dirname + "/../logs/" + file;
+    path = __dirname + "/../records/" + file;
     fs.writeFile(path, JSON.stringify(json), (err) => {
         if (err) {
             console.log(
@@ -35,7 +35,7 @@ exports.loadBuffer = (callback) => {
                 //写入数据库
                 const path = __dirname + "/../records/" + files[i];
                 fs.readFile(path, (err, data) => {
-                    if (err) console.log("read file err:"+err);
+                    if (err) console.log("read file err:" + err);
                     else {
                         // console.log("fff"+data.toString());
                         const schema = JSON.parse(data.toString());
@@ -53,13 +53,51 @@ exports.loadBuffer = (callback) => {
     })
 }
 
-exports.getFLows = (callback) => {
-    //从数据库中读取一条/多条数据,
+exports.getFLows = (topk, callback) => {
+    //先取1min以内的doc,使用时间戳
+    (new Date()).toFullLocaleDateTime((pack) => {
+        const query = {
+            date: pack.fullDate,
+            hour: parseInt(pack.hour),
+            minute: parseInt(pack.minute),
+        }
+        Traffic.find(
+            query,
+            null, { sort: { second: -1 } },//降序
+            (err, docs) => {
+                if (err) {
+                    console.log("find docs err:" + err);
+                    callback("数据库错误",null);
+                } else if (docs.length == 0) {
+                    console.log("nothing found");
+                    callback("摄像头没开", null);
+                }else {
+                    console.log("find " + docs.length + "docs");
+                    callback()
+                    //待完善TODO:cam和location都要检查，一层楼有一个摄像头爆了数据都是不对的
+                    //现在仅假设每个楼层有一个摄像头,所以也不需要求和
+                    //并且仅假设我们每个饭堂只需要返回<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-    // const date = (new Date()).toLocaleDateString();
-    // const hour = (new Date()).getHours();
-    // const minute = (new Date()).getMinutes();
-    // const second = (new Date()).getSeconds();
-    // const stamp = date + '-' + hour + ':' + minute + ':' + second;
 
+
+
+
+                    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                    let data = {};
+                    //recursive
+                    (function loop(i) {
+                        if (i >= docs.length) {
+                            callback(null, data);
+                            return;
+                        } else {
+                            if (!(docs[i].location in data)) {
+                                data[docs[i].location] = docs[i].flow;
+                            }
+                            loop(i + 1);
+                        }
+                    })(0)
+                }
+            }
+        )
+    })
 }
