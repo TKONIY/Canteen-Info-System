@@ -4,6 +4,7 @@
 * 如果服务器的socket断开，local会不知所措
 * 如果本地比服务器先开启链接，则会导致服务器一直增加进程而报错.
 ## 后端脚本运行方法
+* mongod --dbpath database --fork --logpath logs/dblog后台运行数据库(如果没开)
 * conda activate opencv(还没找到好的实现方法)
 * pm2 stop app.js 先停止之前运行的代码，防止端口占用
 * pm2 start app.js 
@@ -25,11 +26,11 @@
 * db:           canteen
 * collection:   traffic
 * document:     ↓
-```json
+```js
 {
-    stamp: "2020/2/26-16:25:5",
+    stamp: "2020/02/26-16:25:05",
     time:{
-        date: "2020/2/26",
+        date: "2020/02/26",
         hour: 16,
         minute: 25,
         second: 5,
@@ -39,15 +40,8 @@
     cam: 2 //摄像头在该楼层的编号
 }
 ```
-> 格式说明:
-> ```js
-> doc.time.date:    (new Date()).toLocaleDateString()) 
-> doc.time.hour:    (new Date()).getHours()
-> doc.time.minute:  (new Date()).getMinutes()
-> doc.time.second:  (new Date()).getSeconds()
-> ```
-> * language: `nodejs`  
-> * 其他语言开发者可在命令行输入`node`启动nodejs环境，并执行以上命令进行测试。
+
+
 
 ## 其他:
 实时人数的更新暂定使用ws协议实时传送,后端实现有两种方式

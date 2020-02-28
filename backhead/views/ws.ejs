@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h2>现在摄像头前面有</h2>
+    <h1 id="flow"style="color:green">摄像头没开</h1>
+    <h2>个傻逼</h2>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        const ws = new WebSocket("wss://canteencloud.com/ws")
+        ws.onmessage = (evt) => {
+            $("#flow").text(evt.data);
+            console.log(evt.data)
+        }
+    </script>
+
+</body>
+
+</html>

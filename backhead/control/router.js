@@ -23,8 +23,8 @@ exports.bufferFlow = (json, file) => {
 }
 
 exports.loadBuffer = (callback) => {
-    //这里仅实现将一个buffer文件加载到db中，实际上需要将logs/下的所有buffer都加载到db中
-    fs.readdir(__dirname + "/../logs", (err, files) => {
+    //这里仅实现将logs/下的所有buffer都加载到db中
+    fs.readdir(__dirname + "/../records", (err, files) => {
 
         //循环将所有文件存入数据库，使用递归
         (function loop(i) {
@@ -33,12 +33,12 @@ exports.loadBuffer = (callback) => {
                 return;
             } else {
                 //写入数据库
-                const path = __dirname + "/../logs/" + files[i];
+                const path = __dirname + "/../records/" + files[i];
                 fs.readFile(path, (err, data) => {
-                    if (err) console.log(err);
+                    if (err) console.log("read file err:"+err);
                     else {
-                        // console.log(JSON.parse(data.toString()))
-                        var schema = JSON.parse(data.toString())
+                        // console.log("fff"+data.toString());
+                        const schema = JSON.parse(data.toString());
                         Traffic.create(schema, (err) => {//保存到数据库中
                             if (err) console.log(err.errmsg);
                             else {
@@ -51,4 +51,15 @@ exports.loadBuffer = (callback) => {
             loop(i + 1);
         })(0)
     })
+}
+
+exports.getFLows = (callback) => {
+    //从数据库中读取一条/多条数据,
+
+    // const date = (new Date()).toLocaleDateString();
+    // const hour = (new Date()).getHours();
+    // const minute = (new Date()).getMinutes();
+    // const second = (new Date()).getSeconds();
+    // const stamp = date + '-' + hour + ':' + minute + ':' + second;
+
 }
