@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h2>现在摄像头前面有</h2>
+    <h2>现在学一食堂前面有</h2>
     <h1 id="flow"style="color:green">摄像头没开</h1>
     <h2>个傻逼</h2>
     
@@ -18,7 +18,11 @@
     <script>
         const ws = new WebSocket("wss://canteencloud.com/ws")
         ws.onmessage = (evt) => {
-            $("#flow").text(evt.data);
+            if(/^{[\s\S]*}$/.exec(evt.data)){
+                $("#flow").text(JSON.parse(evt.data)["学一"]);
+            }else{
+                $("#flow").text(evt.data.toString());
+            }
             console.log(evt.data)
         }
     </script>

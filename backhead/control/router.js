@@ -1,7 +1,7 @@
 const fs = require("fs");
 const cfg = require("./config.js");
 const Traffic = require("../models/traffic.js");
-// const db = require("../models/db_handy.js")
+
 
 exports.bufferFlow = (json, file) => {
     //如果很多摄像头的化就需要修改这个接口
@@ -54,24 +54,23 @@ exports.loadBuffer = (callback) => {
 }
 
 exports.getFLows = (topk, callback) => {
-    //先取1min以内的doc,使用时间戳
-    (new Date()).toFullLocaleDateTime((pack) => {
+    //先取20以内的doc,跨分钟的分成两部分查
+    (new Date()).toFullLocaleDateTime().then((pack) => {
         const query = {
             date: pack.fullDate,
             hour: parseInt(pack.hour),
             minute: parseInt(pack.minute),
         }
-        Traffic.find(
-            query,
-            null, { sort: { second: -1 } },//降序
+        Traffic.findRecentFlows(
+            cfg.maxDelay,
             (err, docs) => {
                 if (err) {
                     console.log("find docs err:" + err);
-                    callback("数据库错误",null);
+                    callback("数据库错误", null);
                 } else if (docs.length == 0) {
                     console.log("nothing found");
                     callback("摄像头没开", null);
-                }else {
+                } else {
                     console.log("find " + docs.length + "docs");
                     callback()
                     //待完善TODO:cam和location都要检查，一层楼有一个摄像头爆了数据都是不对的

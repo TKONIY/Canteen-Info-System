@@ -107,7 +107,7 @@ function recvPersonNum() {
         if (regParse) {
             console.log(chunk.toString());
 
-            (new Date()).toFullLocaleDateTime((pack) => {
+            (new Date()).toFullLocaleDateTime().then((pack) => {
                 const stamp = pack.fullDate + '-' + pack.fullTime;
 
                 let schema = {

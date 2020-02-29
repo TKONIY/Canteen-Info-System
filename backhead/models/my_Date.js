@@ -1,55 +1,50 @@
-/**
- * 用0填补,虽然是异步函数,但是感觉可以return
- * @param {string} str 
- * @param {final-length} length 
- * @ret {string} 
- */
-function padding(str, length) {
-  if (length <= str.length) {
-    return str;
-  } else {
-    return('0'.repeat(length - str.length) + str);
-  }
-}
+const padding = require("./util.js").padding;
+
+
 
 //为Date对象添加功能
-
+//TODO 将加法减法写在这个类里面
 
 /**
  * @returns {a pack of string date and time.}
  */
-Date.prototype.toFullLocaleDateTime = function (callback) {
+Date.prototype.toFullLocaleDateTime = function () {
 
-  const lds = this.toLocaleDateString();
-  const lts = this.toLocaleTimeString();
+  return new Promise((resolve, reject) => {
 
-  const dateReg = /(\d+)\/(\d+)\/(\d+)/;
-  const dateRes = dateReg.exec(lds);
+    const lds = this.toLocaleDateString();
+    const lts = this.toLocaleTimeString();
 
-  const year = padding(dateRes[1], 4);
-  const month = padding(dateRes[2], 2);
-  const day = padding(dateRes[3],2);//如果需要添加星期再用weekday吧
+    const dateReg = /(\d+)\/(\d+)\/(\d+)/;
+    const dateRes = dateReg.exec(lds);
 
-  const hour = padding(this.getHours().toString(), 2);
-  const minute = padding(this.getMinutes().toString(), 2);
-  const second = padding(this.getSeconds().toString(), 2);
+    const year = padding(dateRes[1], 4);
+    const month = padding(dateRes[2], 2);
+    const day = padding(dateRes[3], 2);//如果需要添加星期再用weekday吧
 
-  const pack = {
+    const hour = padding(this.getHours().toString(), 2);
+    const minute = padding(this.getMinutes().toString(), 2);
+    const second = padding(this.getSeconds().toString(), 2);
 
-    originDate: lds,
-    fullDate: year + '/' + month + '/' + day,
-    year: year,
-    month: month,
-    day: day,
+    const pack = {
 
-    originTime: lts,
-    fullTime: hour + ':' + minute + ':' + second,
-    hour: hour,
-    minute: minute,
-    second: second
-  };
+      originDate: lds,
+      fullDate: year + '/' + month + '/' + day,
+      year: year,
+      month: month,
+      day: day,
 
-  callback(pack);
+      originTime: lts,
+      fullTime: hour + ':' + minute + ':' + second,
+      hour: hour,
+      minute: minute,
+      second: second
+    };
+
+    resolve(pack);
+  });
+
+
 }
 
 
