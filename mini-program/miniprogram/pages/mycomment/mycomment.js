@@ -38,7 +38,9 @@ Page({
 
   onChange(event) {
     this.setData({ value: event.detail });
-  }
+  },
+
+
 
 
 })
