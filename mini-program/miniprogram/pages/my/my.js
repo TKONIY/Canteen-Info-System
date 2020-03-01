@@ -15,7 +15,7 @@ Page({
     grade:"2019级"
 
   },
-
+  
 
   f0: function (event) {
     wx.navigateTo({

@@ -1,6 +1,9 @@
 // miniprogram/pages/mainpg/mainpg.js
 Page({
 
+  
+
+
   /**
    * 页面的初始数据
    */
@@ -75,6 +78,35 @@ Page({
    */
   onLoad: function (options) {
 
+    //建立连接
+    wx.connectSocket({
+      url: "wss://canteencloud.com/ws",
+    })
+
+    //连接成功
+    wx.onSocketOpen(function () {
+      wx.sendSocketMessage({
+        data: 'stock',
+      })
+    })
+   
+    //接收数据
+    wx.onSocketMessage(function (data) {
+      if (typeof data == "object") {
+        console.log(data);
+
+      }
+      else {
+        var objData = JSON.parse(data.data);
+
+      }
+   
+    })
+
+    //连接失败
+    wx.onSocketError(function () {
+      console.log('websocket连接失败！');
+    })
   },
 
   /**
@@ -87,9 +119,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
 
-  },
 
   /**
    * 生命周期函数--监听页面隐藏

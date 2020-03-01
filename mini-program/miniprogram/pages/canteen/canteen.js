@@ -10,7 +10,7 @@ Page({
         name: "学一",
         people: 10,
         id: 1
-
+        
       },
       {
         name: "学二",
@@ -91,6 +91,7 @@ Page({
         price: 5,
         score: 4.0,
         id:4
+        
       },
       
     ]
@@ -106,7 +107,37 @@ Page({
     this.setData({
       mid: options.id
     })
- 
+    
+
+    //建立连接
+    wx.connectSocket({
+      url: "wss://canteencloud.com/ws",
+    })
+
+    //连接成功
+    wx.onSocketOpen(function () {
+      wx.sendSocketMessage({
+        data: 'stock',
+      })
+    })
+
+    //接收数据
+    wx.onSocketMessage(function (data) {
+      if (typeof data == "object") {
+        console.log(data);
+
+      }
+      else {
+        var objData = JSON.parse(data.data);
+
+      }
+
+    })
+
+    //连接失败
+    wx.onSocketError(function () {
+      console.log('websocket连接失败！');
+    })
 
   },
 
