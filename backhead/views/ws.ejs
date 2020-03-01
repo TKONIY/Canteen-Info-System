@@ -18,8 +18,10 @@
     <script>
         const ws = new WebSocket("wss://canteencloud.com/ws")
         ws.onmessage = (evt) => {
-            if(/^{[\s\S]*}$/.exec(evt.data)){
-                $("#flow").text(JSON.parse(evt.data)["学一"]);
+            if(typeof evt.data =="object"){
+                //接收Blob对象
+            }else if(/^{[\s\S]*}$/.exec(evt.data)){
+                $("#flow").text(JSON.parse(evt.data)["1"]);
             }else{
                 $("#flow").text(evt.data.toString());
             }

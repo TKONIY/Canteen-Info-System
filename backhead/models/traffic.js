@@ -42,7 +42,7 @@ trafficSchema.statics.findRecentFlows = function (period, callback) {
                 const date = pack.fullDate;
                 const hour = pack.hour;
                 const minute = pack.minute;
-                const second = padding(parseInt(pack.second) - period, 2);
+                const second = padding((parseInt(pack.second) - period).toString(), 2);
 
                 //仅使用query1查找
                 const query = { stamp: { $gte: date + '-' + hour + ':' + minute + ':' + second } };

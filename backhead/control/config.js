@@ -1,5 +1,5 @@
 module.exports = {
-    defCanteen: "学一",
+    defCanteen: "1",
     defCam: 2,
     db: "canteen",
     coll: "traffic",

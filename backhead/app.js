@@ -43,11 +43,7 @@ wss.on("connection", (ws, req) => {
         "* * * * * *", (fireDate) => {
             router.getFLows(cfg.topkFlows, (err, data) => {
                 //如果err，说明数据库没有和当前同步，摄像头掉线
-                wss.clients.forEach((client) => {
-                    if (client.readyState === WebSocket.OPEN) {
-                        client.send(err || JSON.stringify(data));
-                    }
-                })
+                ws.send(err||JSON.stringify(data));
             })
         }
     )
@@ -89,9 +85,9 @@ function recvPersonNum() {
 
 
     const personCount = spawn("python", ["-u", __dirname + "/socket/remote/recv_result.py"]);
-    personCount.stderr.on("data", (chunk) => {
-        console.log(chunk.toString());
-    });
+    // personCount.stderr.on("data", (chunk) => {
+    //     console.log(chunk.toString());
+    // });
     personCount.stdout.on("close", () => {
         console.log("closed")
         recvPersonNum() //如果退出则重启进程，需要增加加密模块
@@ -105,7 +101,7 @@ function recvPersonNum() {
         // 这里其实可以设置一个计数器，等到一定次数再直接存入数据库，这样就不需要缓冲文件
         // 现在采取直接存的方式，index已经帮我们解决了重复问题
         if (regParse) {
-            console.log(chunk.toString());
+            // console.log(chunk.toString());
 
             (new Date()).toFullLocaleDateTime().then((pack) => {
                 const stamp = pack.fullDate + '-' + pack.fullTime;
