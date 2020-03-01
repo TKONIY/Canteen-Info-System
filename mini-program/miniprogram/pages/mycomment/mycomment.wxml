@@ -1,5 +1,5 @@
   <van-tabs swipeable active="{{ active }}" bind:change="onChange">
-    <van-tab title="评价" color='#007aff'>
+    <van-tab title="短评" color='#007aff'>
     <scroll-view class="list">
    <!---->
       <view class="CONTAINER" wx:for="{{commentList}}"  >

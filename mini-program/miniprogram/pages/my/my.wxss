@@ -61,25 +61,20 @@ page {
 }
 
 .edit{
-  width: 20%;
+  width: 30%;
   background-color: #1989fa;
   color: #fff;
   font-size: 14px;
-  border-radius: 30px;
+  border-radius: 40rpx;
   float:right;
 }
 
-.edit::after {
-  border-radius: 30px;
-  border: 0;
-}
-
 .edit_hover{
-  width: 20%;
+  width: 30%;
   background-color: #1774d1;
   color: #fff;
   font-size: 14px;
-  border-radius: 30px;
+  border-radius: 40rpx;
 }
 
 .air{

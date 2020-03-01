@@ -19,6 +19,6 @@
     <van-cell title="性别" value="{{gender}}" />
     <van-cell title="年级" value="{{grade}}" />
     <view class="air"></view>
-  <van-cell title="我的评价" border="{{ true }}" is-link clickable="{{true}}" url="/pages/mycomment/mycomment" />
+  <van-cell title="我的短评" border="{{ true }}" is-link clickable="{{true}}" url="/pages/mycomment/mycomment" />
   </van-cell-group>
 </view>

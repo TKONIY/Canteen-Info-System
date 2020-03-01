@@ -106,5 +106,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+    f4(e) {
+    wx.request({
+      url: 'https://canteencloud.com/test',
+      data: {
+        x: '1',
+        y: '2'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data)
+      }
+    })
   }
 })
