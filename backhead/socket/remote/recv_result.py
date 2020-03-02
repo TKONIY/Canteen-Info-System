@@ -10,7 +10,7 @@ def socket2cloud(host="0.0.0.0", port=9999, listen=1, sleep=0):
     # verified
     slocal, addr = s.accept()
     print('locol pc:%s' % str(addr))
-    # 补充地址识别 
+    
 
     while True:
         slocal.send('next'.encode('utf-8'))
