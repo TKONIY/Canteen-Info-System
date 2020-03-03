@@ -1,6 +1,8 @@
 <!--miniprogram/pages/commint com/commint com.wxml-->
- <input  class="input" placeholder="请输入文字评论" focus="{{focus}}" />
+<form bindsubmit='res'>
+ <input  class="input" bindinput="comment" placeholder="请输入文字评论" focus="{{focus}}" />
 
-  <button class="button" palin="false"  bindtap="btnClick">
+  <button class="button" palin="false"  form-type="submit">
 点击提交
 </button>
+</form>

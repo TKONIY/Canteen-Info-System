@@ -101,20 +101,25 @@ Page({
           console.log("请求失败", res)
         }
       })
+    console.log(options)
+    var canteenno = parseInt(options.id)
+
+    wx.setStorageSync('canteenno', canteenno)
+    console.log(canteenno)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+         
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -155,6 +160,7 @@ Page({
 
   f1: function (event) {
     var dishId = event.currentTarget.dataset.dishId
+    wx.setStorageSync('dishId', dishId)
     console.log(dishId);
     wx.navigateTo({
       url: '/pages/dish/dish?id=' + dishId

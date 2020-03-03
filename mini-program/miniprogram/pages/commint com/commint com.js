@@ -1,5 +1,44 @@
 // miniprogram/pages/commint com/commint com.js
+let com = ""
 Page({
+  comment(event){
+    console.log(event)
+    com = event
+  },
+
+  res: function (e) {
+    let that = this
+    console.log(that.data.mid)
+    const db = wx.cloud.database()
+    var canteenno = (wx.getStorageSync('canteenno'))
+    console.log("食堂代号：" + canteenno)
+    var dishId = (wx.getStorageSync('dishId'))
+    db.collection('comment').add({
+      data: {
+        comment: com.detail.value,
+        timestamp: com.timeStamp,
+        canteenno: canteenno,
+        dish_id: dishId
+      },
+      success: res => {
+        // 在返回结果中会包含新创建的记录的 _id
+        this.setData({
+          comment: com.detail.value
+        })
+        wx.showToast({
+          title: '评论提交成功',
+        })
+        console.log('[数据库] [新增记录] 成功，记录 内容: ', com.detail.value)
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '提交失败'
+        })
+        console.error('[数据库] [新增记录] 失败：', err)
+      }
+    })
+  },
 
   /**
    * 页面的初始数据
@@ -12,14 +51,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log("route:" + this.route)
   },
 
   /**
