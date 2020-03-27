@@ -1,4 +1,5 @@
 // pages/deployFunctions/deployFunctions.js
+const db = wx.cloud.database().collection('userinfo')
 Page({
 
   /**
@@ -12,7 +13,9 @@ Page({
     requestResult: '',
     username:"will",
     gender:"男",
-    grade:"2019级"
+    grade:"2019级",
+
+    datalist: []
 
   },
 
@@ -24,12 +27,22 @@ Page({
   },
 
   onLoad: function () {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
+    let that = this
+    const openid = wx.getStorageSync('openid')
+    //console.log(that.data.mid)
+    db.where({
+      _openid: openid
+    }).get({
+      success(res) {
+        console.log("请求成功", res)
+        that.setData({
+          datalist: res.data
+        })
+      },
+      fail(res) {
+        console.log("请求失败", res)
+      }
+    })
 
     // 获取用户信息
     wx.getSetting({

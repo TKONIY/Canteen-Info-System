@@ -1,6 +1,12 @@
 // miniprogram/pages/mainpg/mainpg.js
-Page({
+var db = wx.cloud.database().collection('userinfo')
 
+Page({
+  test() {
+    wx.navigateTo({
+      url: '/pages/test/test',
+    })
+  },
   /**
    * 页面的初始数据
    */
@@ -66,15 +72,38 @@ Page({
         id: 10
 
       }
-    ]
+    ],
 
+    openid: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getOpenid();
+  },
 
+  //获取用户openid
+  getOpenid() {
+    let that = this
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        console.log(res)
+        console.log('云函数获取到的openid: ', res.result.openid)
+        var openid = res.result.openid
+        db.add({
+          data:{
+
+          }
+        })
+        wx.setStorageSync('openid', openid)
+        that.setData({
+          openid: openid
+        })
+      }
+    })
   },
 
   /**
@@ -130,6 +159,20 @@ Page({
     console.log(canteenId);
     wx.navigateTo({
       url: '/pages/canteen/canteen?id=' + canteenId
+    })
+  },
+
+  getUserInfo: function (e) {
+    var openid = wx.getStorageSync('openid')
+    var userInfo = e.detail.userInfo
+    console.log(e)
+    console.log(userInfo)
+    db.where({
+      _openid: openid
+    }).get({
+      success: function(res){
+        console.log(res)
+      }
     })
   }
 })

@@ -21,10 +21,8 @@
     "pages/input/input",
     "pages/edit/edit",
     "pages/djy/djy",
-    "pages/commint com/commint com"
-
-
-
+    "pages/commint com/commint com",
+    "pages/test/test"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

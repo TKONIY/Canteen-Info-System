@@ -9,7 +9,7 @@
          <image src="/images/02.jpg" class="chathead"></image>
 
          <view class="container">
-            <text class="name">{{item.username}}    {{item.school}}</text>         
+            <text class="name">{{item.username}} {{item.school}} {{item.grade}}</text>         
             <text class="time">{{item.time}}</text>
 
          </view>

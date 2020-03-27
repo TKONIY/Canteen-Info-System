@@ -13,29 +13,51 @@ Page({
     var canteenno = (wx.getStorageSync('canteenno'))
     console.log("食堂代号：" + canteenno)
     var dishId = (wx.getStorageSync('dishId'))
-    db.collection('comment').add({
-      data: {
-        comment: com.detail.value,
-        timestamp: com.timeStamp,
-        canteenno: canteenno,
-        dish_id: dishId
+    var openid = (wx.getStorageSync('openid'))
+    var time = new Date().getTime();
+
+    db.collection('userinfo').where({
+      _openid: openid
+    }).get({
+      success(res) {
+        console.log("获取用户openid成功", res)
+
+        //在每一条评论中加入用户信息！！！！
+
+
+
+        db.collection('comment').add({
+          data: {
+            comment: com.detail.value,
+            canteenno: canteenno,
+            dish_id: dishId,
+            time: time
+          },
+          success: res => {
+            // 在返回结果中会包含新创建的记录的 _id
+            this.setData({
+              comment: com.detail.value
+            })
+            console.log('[数据库] [新增记录] 成功，记录 内容: ', com.detail.value)
+            wx.navigateBack({
+            })
+            wx.showToast({
+              title: '评论提交成功',
+            })
+          },
+          fail: err => {
+            console.error('[数据库] [新增记录] 失败：', err)
+            wx.navigateBack({
+            })
+            wx.showToast({
+              icon: 'none',
+              title: '提交失败'
+            })
+          }
+        })
       },
-      success: res => {
-        // 在返回结果中会包含新创建的记录的 _id
-        this.setData({
-          comment: com.detail.value
-        })
-        wx.showToast({
-          title: '评论提交成功',
-        })
-        console.log('[数据库] [新增记录] 成功，记录 内容: ', com.detail.value)
-      },
-      fail: err => {
-        wx.showToast({
-          icon: 'none',
-          title: '提交失败'
-        })
-        console.error('[数据库] [新增记录] 失败：', err)
+      fail(res) {
+
       }
     })
   },

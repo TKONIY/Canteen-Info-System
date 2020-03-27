@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 const db = wx.cloud.database().collection("comment")
+const utilsDays = require('../../utils/utils-days');
 
 // 初始化 cloud
 wx.cloud.init();
@@ -12,30 +13,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
-    commentList: [
-      { username:"will",
-       school:"信通院2018级",
-        time: "刚刚",
-        name: "麻辣烫",
-        window: 2,
-        canteen: "教工餐厅 5楼",
-        comment: "超好吃！",
-        score: 5
-      },
-      {
-        username: "will",
-        school: "信通院2018级",
-        time: "2019.10.30 16:46",
-        name: "牛肉拉面",
-        window: 3,
-        canteen: "学生餐厅 2楼",
-        comment: "超级无敌好吃！！！",
-        score: 5
-      }
-    ],
+    datalist: [],
+    iconurl: '',
+    username: '',
+    school: '',
+    userid: '',
+    newDate: '',
+    // commentList: [
+    //   { username:"will",
+    //    school:"信通院2018级",
+    //     time: "刚刚",
+    //     name: "麻辣烫",
+    //     window: 2,
+    //     canteen: "教工餐厅 5楼",
+    //     comment: "超好吃！",
+    //     score: 5
+    //   }, 
+    //   {
+    //     username: "will",
+    //     school: "信通院2018级",
+    //     time: "2019.10.30 16:46",
+    //     name: "牛肉拉面",
+    //     window: 3,
+    //     canteen: "学生餐厅 2楼",
+    //     comment: "超级无敌好吃！！！",
+    //     score: 5
+    //   }
+    // ],
 
-    datalist: []
   },
  onChange(event){
    this.setData({value:event.detail});
@@ -44,6 +49,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    // this.setData({
+    //   newDate: utilsDays.formatMsgTime()
+    // })
+
     var canteenno = (wx.getStorageSync('canteenno'))
     var dishId = (wx.getStorageSync('dishId'))
     console.log(canteenno)
@@ -62,7 +72,8 @@ Page({
         success(res) {
           console.log("请求成功", res)
           that.setData({
-            datalist: res.data
+            datalist: res.data,
+            userid: res.data.openid
           })
         },
         fail(res) {
