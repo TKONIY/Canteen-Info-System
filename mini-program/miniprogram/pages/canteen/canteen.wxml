@@ -1,14 +1,14 @@
 <!--miniprogram/pages/canteen/canteen.wxml-->
 <view class="container">
-<view class="guide">
+  <view class="guide">
    
     <text class="headline">{{canteenlist[mid-1].name}}</text>
     <text class="p">当前人流量</text>
     <text class="q">{{canteenlist[mid-1].people}}</text>
-  
-
+    
   </view>
  
+  <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler"></canvas>
   <text class="p">菜品一览</text>
   <text class="m">点击可查看文字评论</text>
   <view class="list1">
