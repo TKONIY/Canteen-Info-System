@@ -195,8 +195,8 @@ justify-content:center;
   max-height: 20%;
   width: 200px;
   height: 50px;
-  padding:5px； 
-    border-radius: 50%;
+  padding:5px;
+  border-radius:50%;
 }
 .guide .image2 {
   margin-top: 20rpx;
