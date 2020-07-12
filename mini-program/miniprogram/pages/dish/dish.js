@@ -95,11 +95,9 @@ Page({
 
   },
   f2: function (event) {
-   var that=this
-   parselnt(that.data.mid)
-   console.log(that.data.mid)
+  
     wx.navigateTo({
-      url: '/pages/commint com/commint com?id='+that.data.mid
+      url: '/pages/commint com/commint com?id='+options.id
     })
   }
 })

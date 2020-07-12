@@ -69,7 +69,19 @@ Page({
         id: 10
 
       }
-    ]
+    ],
+    peopl:{
+      num:1,
+      "2":2,
+      "3":3,
+      "4":4,
+      "5":5,
+      "6":6,
+      "7":7,
+      "8":8,
+      "9":9,
+      "10":10
+    }
 
   },
 
@@ -77,7 +89,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+   var x=this;
     //建立连接
     wx.connectSocket({
       url: "wss://canteencloud.com/ws",
@@ -92,15 +104,17 @@ Page({
    
     //接收数据
     wx.onSocketMessage(function (data) {
-      if (typeof data == "object") {
-        console.log(data);
+      if (/^{[\s\S]*}$/.exec(data.data))
 
-      }
-      else {
-        var objData = JSON.parse(data.data);
-
-      }
-   
+      
+      {console.log(data.data);
+     
+     var objData = JSON.parse(data.data);
+     x.setData({
+       people:objData
+     })
+     }
+     
     })
 
     //连接失败
