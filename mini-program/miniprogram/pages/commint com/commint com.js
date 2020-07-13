@@ -1,5 +1,6 @@
 // miniprogram/pages/commint com/commint com.js
 let com = ""
+var pages = getCurrentPages();
 Page({
   comment(event){
     console.log(event)
@@ -16,7 +17,7 @@ Page({
     var openid = (wx.getStorageSync('openid'))
     var time = new Date().getTime();
 
-    db.collection('userinfo').where({
+    var jw = db.collection('userinfo').where({
       _openid: openid
     }).get({
       success(res) {
@@ -24,10 +25,11 @@ Page({
 
         //在每一条评论中加入用户信息！！！！
 
-
+        //pages[pages.length - 2].onShow();
 
         db.collection('comment').add({
           data: {
+            grade: jw.grade,
             comment: com.detail.value,
             canteenno: canteenno,
             dish_id: dishId,

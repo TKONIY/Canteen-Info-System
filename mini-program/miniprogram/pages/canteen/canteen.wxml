@@ -16,7 +16,7 @@
       <view class="uploader" wx:for="{{datalist}}" bindtap='f1' data-dish-id="{{item.id}}" >
         <view class="uploader-text1"> <text>{{item.name}}</text></view>
         <view class="uploader-text2"> <text>价格：{{item.price}}    得分：{{item.score}}  </text></view>
-      <image class='.image1' src="/images/02.jpg" bindtap="f1"></image>
+      <image class='.image1' src="{{item.image_url}}" bindtap="f1"></image>
       </view>
 
  

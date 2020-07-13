@@ -22,7 +22,7 @@ Page({
 
   f0: function (event) {
     wx.navigateTo({
-      url: '/pages/edit/edit'
+      url: '/pages/input/input'
     })
   },
 

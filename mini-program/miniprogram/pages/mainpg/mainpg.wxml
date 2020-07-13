@@ -7,4 +7,4 @@
 </view>
 </view>
 <button bindtap="test">登陆测试</button>
-<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取用户登录信息</button>
+<button open-type="getUserInfo" bindtap="getInfo" bindgetuserinfo="getUserInfo">获取用户登录信息</button>

@@ -1,7 +1,7 @@
 // miniprogram/pages/dish/dish.js
 //获取应用实例
 const app = getApp()
-const db = wx.cloud.database().collection("comment")
+const db = wx.cloud.database()
 const utilsDays = require('../../utils/utils-days');
 
 // 初始化 cloud
@@ -65,7 +65,7 @@ Page({
 
     let that = this
     //console.log(that.data.mid)
-    db.where({
+    db.collection('comment').where({
       canteenno: canteenno,
       dish_id: dishId
     }).get({

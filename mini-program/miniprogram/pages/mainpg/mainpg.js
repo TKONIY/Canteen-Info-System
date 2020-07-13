@@ -1,5 +1,5 @@
 // miniprogram/pages/mainpg/mainpg.js
-var db = wx.cloud.database().collection('userinfo')
+var db = wx.cloud.database()
 
 Page({
   test() {
@@ -7,6 +7,17 @@ Page({
       url: '/pages/test/test',
     })
   },
+  // getInfo() {
+  //   var my_id = data[0]._openid;
+  //   let that = this;
+
+  //   db.add({
+  //     data:{
+  //       test:my_id,
+
+  //     }
+  //   })
+  // },
   /**
    * 页面的初始数据
    */
@@ -93,9 +104,9 @@ Page({
         console.log(res)
         console.log('云函数获取到的openid: ', res.result.openid)
         var openid = res.result.openid
-        db.add({
+        db.collection("userinfo").add({
           data:{
-
+            // test: res.result.appid
           }
         })
         wx.setStorageSync('openid', openid)
@@ -167,7 +178,7 @@ Page({
     var userInfo = e.detail.userInfo
     console.log(e)
     console.log(userInfo)
-    db.where({
+    db.collection("userinfo").where({
       _openid: openid
     }).get({
       success: function(res){
