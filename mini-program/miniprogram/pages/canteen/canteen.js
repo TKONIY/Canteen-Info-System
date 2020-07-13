@@ -141,6 +141,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var x = this;
     console.log(options.id)
     this.setData({
       mid: options.id
@@ -161,13 +162,13 @@ Page({
 
     //接收数据
     wx.onSocketMessage(function (data) {
-      if (typeof data == "object") {
-        console.log(data);
+      if (/^{[\s\S]*}$/.exec(data.data)) {
+        console.log(data.data);
 
-      }
-      else {
         var objData = JSON.parse(data.data);
-
+        x.setData({
+          people: objData
+        })
       }
 
     })
