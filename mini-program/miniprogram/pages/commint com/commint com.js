@@ -17,7 +17,7 @@ Page({
     var openid = (wx.getStorageSync('openid'))
     var time = new Date().getTime();
 
-    var jw = db.collection('userinfo').where({
+    db.collection('userinfo').where({
       _openid: openid
     }).get({
       success(res) {
@@ -29,7 +29,7 @@ Page({
 
         db.collection('comment').add({
           data: {
-            grade: jw.grade,
+            grade: res.data[0].grade,
             comment: com.detail.value,
             canteenno: canteenno,
             dish_id: dishId,
@@ -45,6 +45,9 @@ Page({
             })
             wx.showToast({
               title: '评论提交成功',
+            })
+            wx.navigateBack({
+              delta: 1
             })
           },
           fail: err => {
