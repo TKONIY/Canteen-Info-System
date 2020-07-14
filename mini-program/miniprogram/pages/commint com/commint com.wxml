@@ -1,6 +1,6 @@
 <!--miniprogram/pages/commint com/commint com.wxml-->
  <input  class="input" placeholder="请输入文字评论" focus="{{focus}}" />
-
+<van-rate  bind:change="onChange"/>
   <button class="button" palin="false"  bindtap="btnClick">
 点击提交
 </button>
