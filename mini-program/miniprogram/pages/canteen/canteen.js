@@ -124,7 +124,7 @@ Page({
     var categories = [];
     var data = [];
     for (var i = 0; i < 10; i++) {
-        categories.push('201620162-' + (i + 1));
+        categories.push('10：' + (i + 1));
         data.push(Math.random()*(20-10)+10);
     }
     return {
@@ -146,6 +146,7 @@ Page({
     //建立连接
     wx.connectSocket({
       url: "wss://canteencloud.com/ws",
+      url:"wss://canteencloud.com/preview"
     })
 
     //连接成功
@@ -192,6 +193,7 @@ Page({
           disableGrid: false
       },
       yAxis: {
+          disabled: false,
           title: '人流量 (个)',
           format: function (val) {
               return val.toFixed(2);
