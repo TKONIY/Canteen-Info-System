@@ -1,9 +1,12 @@
 // miniprogram/pages/canteen/canteen.js
-Page({
+//获取应用实例
+const app = getApp()
+const db = wx.cloud.database().collection("dish")
 
-  /**
-   * 页面的初始数据
-   */
+// 初始化 cloud
+wx.cloud.init();
+
+Page({
   data: {
     canteenlist: [
       {
@@ -68,34 +71,9 @@ Page({
       }
     ],
 
-    canteendish0:[
-      {name:"西红柿炒鸡蛋",
-      price:5,
-      score:4.0,
-      id:1
-      },
-      {
-        name: "茄子",
-        price: 5,
-        score: 4.0,
-        id:2
-      },
-      {
-        name: "土豆",
-        price: 5,
-        score: 4.0,
-        id:3
-      },
-      {
-        name: "胡萝卜",
-        price: 5,
-        score: 4.0,
-        id:4
-      },
-      
-    ]
-
-
+    canteendish0: {
+      datalist: []
+    }
   },
 
   /**
@@ -106,22 +84,42 @@ Page({
     this.setData({
       mid: options.id
     })
- 
 
+    let that = this
+    console.log(that.data.mid)
+    db.where({
+      canteenno: parseInt(that.data.mid)
+    })
+      .get({
+        success(res) {
+          console.log("请求成功", res)
+          that.setData({
+            datalist: res.data
+          })
+        },
+        fail(res) {
+          console.log("请求失败", res)
+        }
+      })
+    console.log(options)
+    var canteenno = parseInt(options.id)
+
+    wx.setStorageSync('canteenno', canteenno)
+    console.log(canteenno)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+         
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -162,6 +160,7 @@ Page({
 
   f1: function (event) {
     var dishId = event.currentTarget.dataset.dishId
+    wx.setStorageSync('dishId', dishId)
     console.log(dishId);
     wx.navigateTo({
       url: '/pages/dish/dish?id=' + dishId

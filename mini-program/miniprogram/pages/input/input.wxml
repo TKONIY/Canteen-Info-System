@@ -1,5 +1,40 @@
-<view class="weui-cell weui-cell_input">
-    <input class="weui-input" focus bindinput="bindKeyInput" maxlength="10" value='{{username}}' confirm-type='done'/>
-</view>
-<view><button bindtap="f3" class="done" hover-class="done_hover">完成</button></view>
+<!-- pages/input/input.wxml -->
+<form bindsubmit='f3'>
 
+<text>昵称：</text>
+<view class="weui-cell weui-cell_input">
+ <input  class="weui-input" bindinput="name" placeholder='{{datalist[0].nickname}}' focus="{{focus}}" />
+</view>
+
+<view class="row-wrap">
+          <view class="label">学院:</view>
+          <picker bindchange="schoollist" value="{{schoolIndex1}}" range="{{schoolArray}}">
+            <view>
+              <text>{{schoolArray[schoolIndex]}}</text>
+            </view>
+
+          </picker>
+
+    </view>
+<!-- <view class="section {{reply?'on':'off'}}">
+       <input name="other" placeholder="请输入学院名称" type="text"/>
+    </view> -->
+
+<view class="row-wrap">
+          <view class="label">年级:</view>
+          <picker bindchange="gradelist" value="{{gradeIndex1}}" range="{{gradeArray}}">
+            <view>
+              <text>{{gradeArray[gradeIndex]}}</text>
+            </view>
+
+          </picker>
+
+    </view>
+<!-- <view class="section {{reply?'on':'off'}}">
+       <input name="other" placeholder="请输入所在年级" type="text"/>
+    </view> -->
+
+  <button class="done" palin="false" hover-class="done_hover"  form-type="submit">
+完成
+</button>
+</form> 

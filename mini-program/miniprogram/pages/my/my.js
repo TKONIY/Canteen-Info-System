@@ -1,4 +1,5 @@
 // pages/deployFunctions/deployFunctions.js
+const db = wx.cloud.database().collection('userinfo')
 Page({
 
   /**
@@ -12,24 +13,43 @@ Page({
     requestResult: '',
     username:"will",
     gender:"男",
-    grade:"2019级"
+    grade:"2019级",
+
+    datalist: []
 
   },
 
 
   f0: function (event) {
     wx.navigateTo({
-      url: '/pages/edit/edit'
+      url: '/pages/input/input'
     })
   },
 
   onLoad: function () {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
+    //wx.setStorageSync('avatar', avatarUrl)
+    let that = this
+    const openid = wx.getStorageSync('openid')
+    console.log(that.data.mid)
+    console.log("sssss")
+    db.where({
+      _openid: openid
+    }).get({
+      success(res) {
+        console.log("请求成功", res)
+        that.setData({
+          datalist: res.data
+        })
+        db.where({
+          _openid: openid
+        }).add({
+          avatarUrl: './user-unlogin.png'
+        })
+      },
+      fail(res) {
+        console.log("请求失败", res)
+      }
+    })
 
     // 获取用户信息
     wx.getSetting({
@@ -50,11 +70,16 @@ Page({
   },
 
   onGetUserInfo: function (e) {
+    console.log("look here!")
+    console.log(e)
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo
+      })
+      db.add({
+        //avatar: avatarUrl
       })
     }
   },
@@ -70,7 +95,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad()
   },
 
   /**
@@ -106,5 +131,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getUserInfo: function (e) {
+    var openid = wx.getStorageSync('openid')
+    var userInfo = e.detail.userInfo
+    console.log(e)
+    console.log(userInfo)
+    // db.where({
+    //   _openid: openid
+    // }).get({
+    //   success: function (res) {
+    //     console.log(res)
+    //   }
+    // })
+    wx.setStorageSync('gender', userInfo.gender)
   }
 })
