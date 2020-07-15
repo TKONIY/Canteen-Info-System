@@ -1,5 +1,5 @@
 <!--miniprogram/pages/dish/dish.wxml-->
-<scroll-view class="list"> 
+<scroll-view class="list">  
    <!---->
      <van-cell title="提交菜品评价" border="{{ true }}" is-link clickable="{{true}}" url="/pages/commint com/commint com" />
       <view class="CONTAINER" wx:for="{{datalist}}"  >

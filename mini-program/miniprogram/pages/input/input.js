@@ -183,11 +183,6 @@ Page({
         })
       }
     })
-    // if (e.detail.value == 4) {
-    //   this.setData({ reply: true })
-    // } else {
-    //   this.setData({ reply: false })
-    // }
     this.setData({
       schoolIndex: e.detail.value
     })
@@ -221,22 +216,6 @@ Page({
         })
       }
     })
-    // db.add({
-    //   data: {
-    //     grade: this.data.gradeArray[e.detail.value]
-    //   },
-    //   success(res) {
-    //     console.log("写入数据库成功！")
-    //   },
-    //   fail(res) {
-    //     console.log("写入数据库失败！")
-    //   }
-    // })
-    // if (e.detail.value == 4) {
-    //   this.setData({ reply: true })
-    // } else {
-    //   this.setData({ reply: false })
-    // }
     this.setData({
       gradeIndex: e.detail.value
     })
