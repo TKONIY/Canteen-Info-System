@@ -1,108 +1,12 @@
-// miniprogram/pages/canteen/canteen.js
+// pages/canvas/canvas.js
 import wxCharts from '../../dist/wxcharts.js';
 var lineChart = null;
 Page({
 
-  
   /**
    * 页面的初始数据
    */
   data: {
-    canteenlist: [
-      {
-        name: "学一",
-        people: 10,
-        id: 1
-        
-      },
-      {
-        name: "学二",
-        people: 11,
-        id: 2
-
-      },
-      {
-        name: "学三",
-        people: 20,
-        id: 3
-
-      },
-      {
-        name: "学四",
-        people: 10,
-        id: 4
-
-      },
-      {
-        name: "学五",
-        people: 2,
-        id: 5
-
-      },
-      {
-        name: "教一",
-        people: 30,
-        id: 6
-
-      },
-      {
-        name: "教二",
-        people: 10,
-        id: 7
-
-      },
-      {
-        name: "教三",
-        people: 10,
-        id: 8
-
-      },
-      {
-        name: "教四",
-        people: 10,
-        id: 9
-
-      },
-      {
-        name: "教五",
-        people: 10,
-        id: 10
-
-      }
-    ],
-
-    canteendish0:[
-      {name:"西红柿炒鸡蛋",
-      price:5,
-      score:4.0,
-      id:1
-      },
-      {
-        name: "茄子",
-        price: 5,
-        score: 4.0,
-        id:2
-      },
-      {
-        name: "土豆",
-        price: 5,
-        score: 4.0,
-        id:3
-      },
-      {
-        name: "胡萝卜",
-        price: 5,
-        score: 4.0,
-        id:4
-        
-      },
-      
-    ]
-  
-  
-
-    
-
 
   },
 
@@ -125,39 +29,39 @@ Page({
     });        
   },
   createSimulationData: function () {
-    var categories = [];
+    var categories = ['14:00','14:05',"14:10","14:15","14:20","14:25","14:30"];
     var data = [];
-    for (var i = 0; i < 10; i++) {
-        categories.push('10：' + (i + 1));
-        data.push(this.data.canteenlist[i].people);
+    var y = this;
+    for (var i = 0; i < 7; i++) {
+        data.push(10);
     }
     return {
         categories: categories,
         data: data
     }
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    var x = this;
-    console.log(options.id)
-    this.setData({
-      mid: options.id
-    })
-    
-
-    //建立连接
+  onLoad: function (e) {
+    var y = this;
+    var mid = e.mid;
     wx.connectSocket({
-      url: "wss://canteencloud.com/ws"
+      url: "wss://canteencloud.com/preview"
     })
 
     //连接成功
     wx.onSocketOpen(function () {
-      wx.sendSocketMessage({
-        data: 'stock',
-      })
+      if (mid = 1) {
+        wx.sendSocketMessage({
+          data: 'stock1'
+        })
+      }
+      else if(mid = 2){
+        wx.sendSocketMessage({
+          data: 'stock2'
+        })
+      }
     })
 
     //接收数据
@@ -166,7 +70,7 @@ Page({
         console.log(data.data);
 
         var objData = JSON.parse(data.data);
-        x.setData({
+        y.setData({
           people: objData
         })
       }
@@ -180,6 +84,13 @@ Page({
 
     //折线
     var windowWidth = 320;
+    try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+
     var simulationData = this.createSimulationData();
     lineChart = new wxCharts({
       canvasId: 'lineCanvas',
@@ -262,21 +173,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-
-  f1: function (event) {
-    var dishId = event.currentTarget.dataset.dishId
-    console.log(dishId);
-    wx.navigateTo({
-      url: '/pages/dish/dish?id=' + dishId
-    })
-  },
-
-  f2: function(event){
-    wx.navigateTo({
-      url: '/pages/canvas/canvas',
-      url: '/pages/canvas/canvas?mid='+this.data.mid
-    })
   }
 })

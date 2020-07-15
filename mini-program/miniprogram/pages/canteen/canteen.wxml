@@ -7,8 +7,7 @@
     <text class="q">{{canteenlist[mid-1].people}}</text>
     
   </view>
- 
-  <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler"></canvas>
+  <button catchtap="f2" class="line" hover-class="line_hover">人流量变化线图</button>
   <text class="p">菜品一览</text>
   <text class="m">点击可查看文字评论</text>
   <view class="list1">

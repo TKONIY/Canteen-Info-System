@@ -1,0 +1,5 @@
+<!--pages/canvas/canvas.wxml-->
+<view>
+  <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler"></canvas>
+</view>
+  

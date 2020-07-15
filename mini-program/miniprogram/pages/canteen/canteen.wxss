@@ -222,3 +222,20 @@ heng{
   flex-direction: row;
   align-content: space-between;
 }
+
+.line{
+  width: 40%;
+  background-color: #1989fa;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 40rpx;
+  float:right;
+}
+
+.line_hover{
+  width: 40%;
+  background-color: #1774d1;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 40rpx;
+}
