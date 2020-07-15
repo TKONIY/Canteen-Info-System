@@ -9,22 +9,22 @@
          <image src="/images/user-unlogin.png" class="chathead"></image>
 
          <view class="container">
-            <text class="name">{{name}}</text>         
-            <text class="time">{{item.time}}</text>
+            <text class="name">{{item.nickname}}</text>         
+            <text class="time">{{item.format_time}}</text>
          </view>
          
         </view>
     
         <view class="commenttext">
-          <text>{{item.text}}</text>
+          <text>{{item.comment}}</text>
         </view>
         
         <van-rate readonly value="{{item.score}}" size='18px'
         bind:change="onChange2"></van-rate>
 
         <view class="container2">
-          <text class="dishname">{{item.name}}</text>
-          <text>{{item.window}} {{item.canteen}}</text>
+          <text class="dishname">{{item.dish_name}}</text>
+          <text>{{item.canteen_name}}</text>
         </view>
     
 

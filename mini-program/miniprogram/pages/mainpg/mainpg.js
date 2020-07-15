@@ -1,8 +1,24 @@
 // miniprogram/pages/mainpg/mainpg.js
+var db = wx.cloud.database()
+
 Page({
+  test() {
+    wx.navigateTo({
+      url: '/pages/test/test',
+    })
+  },
+  // getInfo() {
+  //   var my_id = data[0]._openid;
+  //   let that = this;
 
-  
+  //   db.add({
+  //     data:{
+  //       test:my_id,
 
+
+  //     }
+  //   })
+  // },
 
   /**
    * 页面的初始数据
@@ -70,25 +86,16 @@ Page({
 
       }
     ],
-    peopl:{
-      num:1,
-      "2":2,
-      "3":3,
-      "4":4,
-      "5":5,
-      "6":6,
-      "7":7,
-      "8":8,
-      "9":9,
-      "10":10
-    }
 
+
+    openid: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
    var x=this;
     //建立连接
     wx.connectSocket({
@@ -120,6 +127,30 @@ Page({
     //连接失败
     wx.onSocketError(function () {
       console.log('websocket连接失败！');
+
+    this.getOpenid();
+  },
+
+  //获取用户openid
+  getOpenid() {
+    let that = this
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        console.log(res)
+        console.log('云函数获取到的openid: ', res.result.openid)
+        var openid = res.result.openid
+        db.collection("userinfo").add({
+          data:{
+            // test: res.result.appid
+          }
+        })
+        wx.setStorageSync('openid', openid)
+        that.setData({
+          openid: openid
+        })
+      }
+
     })
   },
 
@@ -175,5 +206,7 @@ Page({
     wx.navigateTo({
       url: '/pages/canteen/canteen?id=' + canteenId
     })
-  }
+  },
+
+  
 })

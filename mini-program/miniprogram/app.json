@@ -22,9 +22,12 @@
     "pages/edit/edit",
     "pages/djy/djy",
     "pages/commint com/commint com",
-    "pages/canvas/canvas"
+
+    "pages/canvas/canvas",
 
 
+
+    "pages/test/test"
 
   ],
   "window": {

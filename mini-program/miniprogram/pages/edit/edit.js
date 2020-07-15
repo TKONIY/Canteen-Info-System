@@ -1,19 +1,21 @@
 // pages/deployFunctions/deployFunctions.js
-Page({
+const db = wx.cloud.database().collection('userinfo')
 
+Page({
+  
   /**
    * 页面的初始数据
    */
   data: {
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: '',
-    username:"will",
-    gender:"男",
-    grade:"2019级"
-
+    // avatarUrl: './user-unlogin.png',
+    // userInfo: {},
+    // logged: false,
+    // takeSession: false,
+    // requestResult: '',
+    // username:"will",
+    // gender:"男",
+    // grade:"2019级"
+    datalist: []
   },
 
   // 上传图片
@@ -68,6 +70,22 @@ Page({
 
 
   onLoad: function (options) {
+    let that = this
+    const openid = wx.getStorageSync('openid')
+    //console.log(that.data.mid)
+    db.where({
+      _openid: openid
+    }).get({
+      success(res) {
+        console.log("请求成功", res)
+        that.setData({
+          datalist: res.data
+        })
+      },
+      fail(res) {
+        console.log("请求失败", res)
+      }
+    })
 
   },
 
@@ -83,7 +101,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

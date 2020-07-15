@@ -1,2 +1,11 @@
-*.vscode
+*.vscode*
 *.idea:
+*__pycache__*
+*package*
+*node_modules*
+*yolov3.weights*
+*database*
+*logs*
+*db_handy*
+*record*
+*pyc*

@@ -15,10 +15,12 @@
     </view>
   </view>
   <van-cell-group>
-    <van-cell title="昵称" value="{{username}}" />
+    <van-cell title="昵称" value="{{datalist[0].nickname}}" />
     <van-cell title="性别" value="{{gender}}" />
-    <van-cell title="年级" value="{{grade}}" />
+    <van-cell title="年级" placeholder="未设置" value="{{datalist[0].grade}}" />
+    <van-cell title="学院" value="{{datalist[0].school}}" />
     <view class="air"></view>
   <van-cell title="我的短评" border="{{ true }}" is-link clickable="{{true}}" url="/pages/mycomment/mycomment" />
   </van-cell-group>
 </view>
+<button open-type="getUserInfo" bindtap="getInfo" bindgetuserinfo="getUserInfo">获取用户登录信息</button>

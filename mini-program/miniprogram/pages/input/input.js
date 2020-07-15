@@ -18,9 +18,11 @@ Page({
     // gender:"男",
     // grade:"2019级"
     datalist: [],
-    schoolArray: ['请选择', '计算机院', '信通院', '电子院', '国际学院'],
+
+    schoolArray: ['请选择','计算机院','信通院','电子院','国际学院'],
     schoolIndex: 0,
-    gradeArray: ['请选择', '2018级', '2019级', '2020级', '2021级'],
+    gradeArray: ['请选择','2018级', '2019级', '2020级', '2021级'],
+
     gradeIndex: 0,
   },
 
@@ -39,7 +41,10 @@ Page({
         console.log("请求成功???", res, res.data[0].school)
         school = res.data[0].school
         console.log(school)
-        for (let schoolflag = 0; schoolflag == 0 && i < 10; i = i + 1) {
+
+
+        for (let schoolflag=0; schoolflag==0 && i<10; i=i+1) {
+
           // wx.showToast({
           //   title: 'haha',
           //   success: function () {
@@ -67,7 +72,6 @@ Page({
         console.log("请求失败", res)
       }
     })
-
 
   },
 
@@ -121,7 +125,9 @@ Page({
 
   },
 
-  f3: function (e) {
+
+  f3: function(e) {
+
     var openid = wx.getStorageSync('openid')
     var id = 'aaa'
     var gender = wx.getStorageSync(gender)
@@ -129,7 +135,9 @@ Page({
     db.where({
       _openid: openid
     }).get({
-      success: function (res) {
+
+      success: function(res){
+
         console.log("成功")
         console.log(res)
         id = res.data[0]._id
@@ -145,7 +153,9 @@ Page({
               title: '更改成功',
             })
             wx.navigateBack({
-              delta: 1
+
+              delta:1
+
             })
           },
           fail: function (res) {
@@ -215,10 +225,12 @@ Page({
           }
         })
       }
+
     })
     this.setData({
       gradeIndex: e.detail.value
     })
+
 
   },
 })

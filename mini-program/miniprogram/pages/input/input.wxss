@@ -46,3 +46,11 @@
   font-size: 14px;
   border-radius: 30px;
 }
+
+.section{
+      font-size:28rpx;
+      margin-left: 50rpx;
+      margin-top: 30rpx;
+    }
+    .on{display: block}
+    .off{display: none}
