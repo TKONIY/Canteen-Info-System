@@ -69,10 +69,47 @@ Page({
 
   },
 
+<<<<<<< Updated upstream
   bindKeyInput:function(e) {
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
     let prevPage1 = pages[pages.length - 3]
+=======
+  f3: function(e) {
+    var openid = wx.getStorageSync('openid')
+    var id = 'aaa'
+    var gender = wx.getStorageSync(gender)
+    let that = this
+    db.where({
+      _openid: openid
+    }).get({
+      success: function(res){
+        console.log("成功")
+        console.log(res)
+        id = res.data[0]._id
+        db.doc(id).update({
+          data: {
+            nickname: newname.detail.value,
+            // gender: gender
+          },
+          success: function (res) {
+            console.log("YEP")
+            console.log(res)
+            wx.showToast({
+              title: '更改成功',
+            })
+            wx.navigateBack({
+              delta:1
+            })
+          },
+          fail: function (res) {
+            console.log("too bad!")
+          }
+        })
+      }
+    })
+  },
+>>>>>>> Stashed changes
 
     prevPage.setData({
       username: e.detail.value
