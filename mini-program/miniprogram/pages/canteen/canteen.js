@@ -162,14 +162,14 @@ Page({
 
     //接收数据
     wx.onSocketMessage(function (data) {
-      if (/^{[\s\S]*}$/.exec(data.data)) {
+     
         console.log(data.data);
 
         var objData = JSON.parse(data.data);
         x.setData({
           people: objData
         })
-      }
+      
 
     })
 
