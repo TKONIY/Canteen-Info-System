@@ -6,5 +6,4 @@
 <view wx:else class="uploader-text2"><text>{{item.name}}</text> </view>
 </view>
 </view>
-<button bindtap="test">登陆测试</button>
-<button open-type="getUserInfo" bindtap="getInfo" bindgetuserinfo="getUserInfo">获取用户登录信息</button>
+<!--      <button bindtap="test">登陆测试</button>       -->

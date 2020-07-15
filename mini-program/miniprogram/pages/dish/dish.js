@@ -49,11 +49,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    // this.setData({
-    //   newDate: utilsDays.formatMsgTime()
-    // })
-
     var canteenno = (wx.getStorageSync('canteenno'))
     var dishId = (wx.getStorageSync('dishId'))
     console.log(canteenno)
@@ -74,7 +69,7 @@ Page({
           that.setData({
             datalist: res.data,
             userid: res.data.openid
-          })
+          }) 
         },
         fail(res) {
           console.log("请求失败", res)

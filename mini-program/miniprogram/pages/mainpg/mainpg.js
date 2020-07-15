@@ -173,17 +173,5 @@ Page({
     })
   },
 
-  getUserInfo: function (e) {
-    var openid = wx.getStorageSync('openid')
-    var userInfo = e.detail.userInfo
-    console.log(e)
-    console.log(userInfo)
-    db.collection("userinfo").where({
-      _openid: openid
-    }).get({
-      success: function(res){
-        console.log(res)
-      }
-    })
-  }
+  
 })

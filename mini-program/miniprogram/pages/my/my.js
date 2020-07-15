@@ -27,9 +27,11 @@ Page({
   },
 
   onLoad: function () {
+    //wx.setStorageSync('avatar', avatarUrl)
     let that = this
     const openid = wx.getStorageSync('openid')
-    //console.log(that.data.mid)
+    console.log(that.data.mid)
+    console.log("sssss")
     db.where({
       _openid: openid
     }).get({
@@ -37,6 +39,11 @@ Page({
         console.log("请求成功", res)
         that.setData({
           datalist: res.data
+        })
+        db.where({
+          _openid: openid
+        }).add({
+          avatarUrl: './user-unlogin.png'
         })
       },
       fail(res) {
@@ -63,11 +70,16 @@ Page({
   },
 
   onGetUserInfo: function (e) {
+    console.log("look here!")
+    console.log(e)
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo
+      })
+      db.add({
+        //avatar: avatarUrl
       })
     }
   },
@@ -83,7 +95,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad()
   },
 
   /**
@@ -119,5 +131,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getUserInfo: function (e) {
+    var openid = wx.getStorageSync('openid')
+    var userInfo = e.detail.userInfo
+    console.log(e)
+    console.log(userInfo)
+    // db.where({
+    //   _openid: openid
+    // }).get({
+    //   success: function (res) {
+    //     console.log(res)
+    //   }
+    // })
+    wx.setStorageSync('gender', userInfo.gender)
   }
 })

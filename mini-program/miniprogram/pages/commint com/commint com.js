@@ -1,21 +1,39 @@
 // miniprogram/pages/commint com/commint com.js
+const db = wx.cloud.database()
 let com = ""
 var pages = getCurrentPages();
+var time_util = require('../../utils/time.js')
+var conv_canteen_util = require('../../utils/convert_canteen.js')
+var dishId = (wx.getStorageSync('dishId'))
+var openid = (wx.getStorageSync('openid'))
+var canteenno = (wx.getStorageSync('canteenno'))
+var dish_name = ""
+var canteen_name = conv_canteen_util.convert_canteen(canteenno)
+
 Page({
   comment(event){
     console.log(event)
     com = event
+    let that = this
+    db.collection('dish').where({
+      canteenno: canteenno,
+      id: dishId
+    }).get({
+      success(res) {
+        dish_name = res.data[0].name
+      }
+    })
   },
 
   res: function (e) {
     let that = this
     console.log(that.data.mid)
-    const db = wx.cloud.database()
-    var canteenno = (wx.getStorageSync('canteenno'))
+
+
     console.log("食堂代号：" + canteenno)
-    var dishId = (wx.getStorageSync('dishId'))
-    var openid = (wx.getStorageSync('openid'))
+
     var time = new Date().getTime();
+    //var modified_time = getDateDiff.getDateDiff(time)
 
     db.collection('userinfo').where({
       _openid: openid
@@ -23,23 +41,22 @@ Page({
       success(res) {
         console.log("获取用户openid成功", res)
 
-        //在每一条评论中加入用户信息！！！！
-
-        //pages[pages.length - 2].onShow();
+        console.log('自定义格式 ' + time_util.formatTime2(new Date().getTime() / 1000, 'Y年M月D日 h:m:s'))
 
         db.collection('comment').add({
           data: {
+            nickname: res.data[0].nickname,
+            school: res.data[0].school,
             grade: res.data[0].grade,
             comment: com.detail.value,
-            canteenno: canteenno,
-            dish_id: dishId,
-            time: time
+            canteen_name: canteen_name,
+            dish_name: dish_name,
+            time: time,
+            format_time: time_util.formatTime2(new Date().getTime() / 1000, 'Y年M月D日 h:m:s'),
+            //avatarurl: 
           },
           success: res => {
             // 在返回结果中会包含新创建的记录的 _id
-            this.setData({
-              comment: com.detail.value
-            })
             console.log('[数据库] [新增记录] 成功，记录 内容: ', com.detail.value)
             wx.navigateBack({
             })
@@ -47,7 +64,7 @@ Page({
               title: '评论提交成功',
             })
             wx.navigateBack({
-              delta: 1
+              delta: 0
             })
           },
           fail: err => {
@@ -78,7 +95,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**

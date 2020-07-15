@@ -124,6 +124,7 @@ Page({
   f3: function(e) {
     var openid = wx.getStorageSync('openid')
     var id = 'aaa'
+    var gender = wx.getStorageSync(gender)
     let that = this
     db.where({
       _openid: openid
@@ -134,13 +135,17 @@ Page({
         id = res.data[0]._id
         db.doc(id).update({
           data: {
-            nickname: newname.detail.value
+            nickname: newname.detail.value,
+            gender: gender
           },
           success: function (res) {
             console.log("YEP")
             console.log(res)
             wx.showToast({
               title: '更改成功',
+            })
+            wx.navigateBack({
+              delta:1
             })
           },
           fail: function (res) {
