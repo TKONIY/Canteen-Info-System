@@ -1,4 +1,4 @@
-  <van-tabs swipeable active="{{ active }}" bind:change="onChange">
+  <van-tabs swipeable active="{{ active }}" bind:change="onChange1">
     <van-tab title="短评" color='#007aff'>
     <scroll-view class="list">
    <!---->
@@ -20,7 +20,7 @@
         </view>
         
         <van-rate readonly value="{{item.score}}" size='18px'
-        bind:change="onChange"></van-rate>
+        bind:change="onChange2"></van-rate>
 
         <view class="container2">
           <text class="dishname">{{item.name}}</text>

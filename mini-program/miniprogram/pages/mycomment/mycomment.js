@@ -29,14 +29,14 @@ Page({
     ]
   },
 
-  onChange(event) {
+  onChange1(event) {
     wx.showToast({
       title: `切换到标签 ${event.detail.name}`,
       icon: 'none'
     });
   },
 
-  onChange(event) {
+  onChange2(event) {
     this.setData({ value: event.detail });
   },
 

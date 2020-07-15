@@ -66,7 +66,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+
   btnClick:function(){
     
+  },
+
+  onChange(event) {
+    this.setData({ value: event.detail });
   }
 })

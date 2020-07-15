@@ -6,8 +6,20 @@
   padding: 5px;
   background:white 
   }
-   .button{
-    background: rgb(106, 186, 218)
-  }
+.button{
+  width: 30%;
+  background-color: #1989fa;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 40rpx;
+  float:right;
+}
 
+.button_hover{
+  width: 30%;
+  background-color: #1774d1;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 40rpx;
+}
   

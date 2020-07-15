@@ -30,11 +30,11 @@ Page({
   },
   createSimulationData: function () {
     var categories = ['14:00','14:05',"14:10","14:15","14:20","14:25","14:30"];
-    var data = [];
+    var data = [10,12,34,21,27,20,18];
     var y = this;
-    for (var i = 0; i < 7; i++) {
-        data.push(10);
-    }
+  //  for (var i = 0; i < 7; i++) {
+   //     data.push(10);
+   // }
     return {
         categories: categories,
         data: data
@@ -101,7 +101,7 @@ Page({
           name: '人流量',
           data: simulationData.data,
           format: function (val, name) {
-              return val.toFixed(2);
+              return val.toFixed(0);
           }
       }],
       xAxis: {
@@ -111,7 +111,7 @@ Page({
           disabled: false,
           title: '人流量 (个)',
           format: function (val) {
-              return val.toFixed(2);
+              return val.toFixed(0);
           },
           min: 0
       },
