@@ -5,6 +5,44 @@ Page({
    * 页面的初始数据
    */
   data: {
+    canteenlist: [
+      {
+        name: "小格冰箱",
+        people: "包含冷藏，适用于存放化妆品，少量饮料",
+        id: 1
+
+      },
+      {
+        name: "中格冰箱",
+        people: "包含冷藏，适用于存放化妆品，少量饮料",
+        id: 2
+
+      },
+      {
+        name: "大格冰箱",
+        people: "包含冷藏，适用于存放化妆品，少量饮料",
+        id: 3
+
+      },
+      {
+        name: "小格冰箱",
+        people: "包含冷冻，适用于存放化妆品，少量饮料",
+        id: 4
+
+      },
+      {
+        name: "中格冰箱",
+        people: "包含冷冻，适用于存放化妆品，少量饮料",
+        id: 5
+
+      },
+      {
+        name: "大格冰箱",
+        people: "包含冷冻，适用于存放化妆品，少量饮料",
+        id: 6
+
+      }
+    ],
 
   },
 
@@ -62,5 +100,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  f1: function (event) {
+    var dishId = event.currentTarget.dataset.dishId
+    wx.setStorageSync('dishId', dishId)
+    console.log(dishId);
+    wx.navigateTo({
+      url: '/pages/dish/dish?id=' + dishId
+    })
   }
 })

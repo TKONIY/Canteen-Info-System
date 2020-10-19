@@ -4,7 +4,7 @@
    
     <text class="headline">{{canteenlist[mid-1].name}}</text>
     <text class="p">当前人流量</text>
-    <text class="q">{{people[0].flow}}</text>
+    <text class="q">{{canteenlist[mid-1].people}}</text>
     
   </view>
   <button catchtap="f2" class="line" hover-class="line_hover">人流量变化线图</button>

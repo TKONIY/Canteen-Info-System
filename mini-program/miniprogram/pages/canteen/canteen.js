@@ -1,8 +1,10 @@
 // miniprogram/pages/canteen/canteen.js
-
+const app = getApp()
+const db = wx.cloud.database().collection("dish")
+wx.cloud.init();
 import wxCharts from '../../dist/wxcharts.js';
 var lineChart = null;
-Page({
+
 
   
   /**
@@ -10,11 +12,10 @@ Page({
    */
 
 //获取应用实例
-const app = getApp()
-const db = wx.cloud.database().collection("dish")
+
 
 // 初始化 cloud
-wx.cloud.init();
+
 
 Page({
 

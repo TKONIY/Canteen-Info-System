@@ -24,11 +24,7 @@
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
-<<<<<<< Updated upstream
-	"appid": "wx44f345aff8fcf1ce",
-=======
 	"appid": "wxdcf467a99adc0419",
->>>>>>> Stashed changes
 	"projectname": "Canteen",
 	"libVersion": "2.8.1",
 	"simulatorType": "wechat",

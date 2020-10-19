@@ -6,35 +6,58 @@
   align-items: flex-start;
   box-sizing: border-box;
 }
-
+.uploader1, .tunnel {
+ display: flex;    /*设置显示样式**/
+    align-items: center;    /**子view垂直居中*/
+    vertical-align: center; /**垂直居中*/
+    justify-content: center; /**内容居中*/
+    flex-direction:row;
+}
 .uploader-text, .tunnel-text {
   width: 100%;
-  line-height: 52px;
-  font-size: 34rpx;
+  line-height: 50px;
+  font-size: 40rpx;
   color: #ffbb00;
 }
 
 .uploader-text1 {
   width: 100%;
-  line-height: 52px;
+  line-height: 30px;
   font-size: 34rpx;
+  padding: 2px 0 5px 0;
   color: #ff0000;
 }
 .uploader-text2 {
-  width: 100%;
-  line-height: 52px;
-  font-size: 34rpx;
+  width: 80%;
+  line-height: 40px;
+  font-size: 30rpx;
   color: #0e0707;
+}
+.divLine{
+ background: rgb(235, 234, 234);
+ width: 80%;
+ height: 5rpx;
+ align-items: center;    /**子view垂直居中*/
+    vertical-align: center; /**垂直居中*/
+    justify-content: center; /**内容居中*/
+}
+
+.image1 {
+  margin-top: 10rpx;
+  max-width: 45%;
+  width: 35px;
+  height: 25px;
+  
 }
 .list1 {
   margin-top: 5rpx;
   height: auto;
   width: 100%;
-  background: #fff;
+  background: rgb(235, 234, 234);
   padding: 0 40rpx;
-  border: 3px solid rgba(0, 0, 0, 0.1);
-  border-left: none;
-  border-right: none;
+  border: 3px solid rgba(19, 8, 8, 0.1);
+  border-left: 3px solid rgba(15, 3, 3, 0.1);
+  border-right: 3px solid rgba(19, 2, 2, 0.1);
   transition: all 300ms ease;
   display: flex;
   flex-direction: column;

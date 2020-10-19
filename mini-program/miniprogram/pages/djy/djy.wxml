@@ -1,2 +1,32 @@
 <!--miniprogram/pages/djy/djy.wxml-->
-<text>miniprogram/pages/djy/djy.wxml</text>
+
+ <swiper style='backgroud:#eee;height:150px;'>
+ <swiper-item>
+ 
+ <image src='/images/11.png'></image>
+ </swiper-item>
+  <swiper-item>
+ <image src='/images/11.png'></image>
+ </swiper-item>
+  <swiper-item>
+ <image src='/images/11.png'></image>
+ </swiper-item>
+ </swiper>
+ 
+  <text class="p">冰箱尺寸</text>
+  
+  <view class="list1">
+   
+      <view class="uploader" wx:for="{{canteenlist}}" bindtap='f1' data-dish-id="{{item.id}}" >
+        <view class="uploader-text1"> <text>{{item.name}}</text></view>
+        <view class="uploader-text2"> <text>{{item.people}}     </text></view>
+      <image class='.image1' src="/images/logo.png"></image>
+      </view>
+
+ 
+
+
+</view>
+
+
+

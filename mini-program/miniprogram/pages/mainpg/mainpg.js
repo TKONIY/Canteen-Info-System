@@ -28,61 +28,101 @@ Page({
       {
         name:"学一",
         people:10,
-        id:1
+        id:1,
+        num:123456,
+        time:20200605,
+        num1: 16,
+        flag:1
 
       },
       {
         name: "学二",
         people: 11,
-        id: 2
+        id: 2,
+        num:23456,
+        time: 20200605,
+        num1:16,
+        flag: 0
 
       },
       {
         name: "学三",
         people: 20,
-        id: 3
+        id: 3,
+        num:456789,
+        time: 20200605,
+        num1: 16,
+        flag: 0
 
       },
       {
         name: "学四",
         people: 10,
-        id: 4
+        id: 4,
+        num: 456789,
+        time: 20200605,
+        num1: 16,
+        flag: 0
 
       },
       {
         name: "学五",
         people: 2,
-        id: 5
+        id: 5,
+        num: 456789,
+        time: 20200605,
+        num1: 16,
+        flag: 0
 
       },
       {
         name: "教一",
         people: 30,
-        id: 6
+        id: 6,
+        num: 456789,
+        time: 20200605,
+        num1: 16,
+        flag: 0
 
       },
       {
         name: "教二",
         people: 10,
-        id: 7
+        id: 7,
+        num: 456789,
+        time: 20200605,
+        num1: 16,
+        flag: 0
 
       },
       {
         name: "教三",
         people: 10,
-        id: 8
+        id: 8,
+        num: 456789,
+        time: 20200605,
+        num1: 16,
+        flag: 0
 
       },
       {
         name: "教四",
         people: 10,
-        id: 9
+        id: 9,
+        num: 456789,
+        time: 20200605,
+        num1: 16,
+        flag: 0
 
       },
       {
         name: "教五",
         people: 10,
-        id: 10
+        id: 10,
+        num: 456789,
+        time: 20200605,
+        num1: 16,
+        flag: 0
 
       }
     ],
@@ -111,22 +151,25 @@ Page({
    
     //接收数据
     wx.onSocketMessage(function (data) {
-      if (/^{[\s\S]*}$/.exec(data.data))
+     
 
       
-      {console.log(data.data);
+      console.log(data.data);
      
      var objData = JSON.parse(data.data);
      x.setData({
        people:objData
      })
-     }
+     
      
     })
 
     //连接失败
     wx.onSocketError(function () {
       console.log('websocket连接失败！');
+
+    this.getOpenid();
+  })
 
     this.getOpenid();
   },
@@ -152,7 +195,8 @@ Page({
       }
 
     })
-  },
+  }
+  ,
 
   /**
    * 生命周期函数--监听页面初次渲染完成

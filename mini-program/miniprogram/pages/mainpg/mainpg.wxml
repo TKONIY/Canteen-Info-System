@@ -1,9 +1,24 @@
 <!--miniprogram/pages/mainpg/mainpg.wxml-->
 <view class="list1">
+ 
  <view class="uploader" wx:for="{{canteenlist}}" data-canteen-id="{{item.id}}" bindtap="f0" >
- <view wx:if="{{item.people > 15 }}" class="uploader-text1"> <text>{{item.name}}</text></view>
-<view wx:elif="{{item.people > 10}}" class="uploader-text"> <text>{{item.name}}</text></view>
-<view wx:else class="uploader-text2"><text>{{item.name}}</text> </view>
+ <view wx:if="{{item.flag == 0 }}" class="uploader1">
+ <image src="/images/14.png" class="image1"></image>
+ <text class="uploader-text">已完成</text>
+ </view>
+ <view wx:else class="uploader1">
+ <image src="/images/13.png" class="image1"></image>
+ <text class="uploader-text">进行中</text>
+ </view>
+ 
+     <!-- 分割线 -->
+  <view class="divLine"></view>
+
+ 
+<view  class="uploader-text2"><text>订单号     {{item.num}}</text> </view>
+<view  class="uploader-text2"><text>时间    {{item.time}}</text> </view>
+<view  class="uploader-text2"><text>地点     北京邮电大学</text> </view>
+<view  class="uploader-text2"><text>柜子号     {{item.num1}}</text> </view>
 </view>
 
 </view>

@@ -22,32 +22,37 @@
     "pages/edit/edit",
     "pages/djy/djy",
     "pages/commint com/commint com",
-
     "pages/canvas/canvas",
-
-
-
-    "pages/test/test"
-
+    "pages/test/test",
+    
+    "pages/xieyi/xieyi"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#FFFF00",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "邮迹云食堂",
+    "navigationBarBackgroundColor": "#FFFF00",
+    "navigationBarTitleText": "R.SHARE",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [
       {
+        "pagePath": "pages/djy/djy",
+        "selectedIconPath": "images/08.png",
+        "iconPath": "images/07.png",
+        "text": "首页"
+      },
+      {
         "pagePath": "pages/mainpg/mainpg",
-        "selectedIconPath": "images/04.jpg",
-        "iconPath": "images/03.jpg"
+        "selectedIconPath": "images/05.png",
+        "iconPath": "images/06.png",
+        "text": "预定"
       },
       {
         "pagePath": "pages/my/my",
-        "selectedIconPath": "images/02.jpg",
-        "iconPath": "images/01.jpg"
+        "selectedIconPath": "images/10.png",
+        "iconPath": "images/09.png",
+        "text": "我的"
       }
     ]
   },

@@ -6,7 +6,7 @@
 
         <view class="container1">
 
-         <image src="/images/user-unlogin.png" class="chathead"></image>
+         <image src="/images/12.png" class="chathead"></image>
 
          <view class="container">
             <text class="name">{{item.nickname}}</text>         
@@ -19,9 +19,7 @@
           <text>{{item.comment}}</text>
         </view>
         
-        <van-rate readonly value="{{item.score}}" size='18px'
-        bind:change="onChange2"></van-rate>
-
+        
         <view class="container2">
           <text class="dishname">{{item.dish_name}}</text>
           <text>{{item.canteen_name}}</text>
